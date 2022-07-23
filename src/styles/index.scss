@@ -1,0 +1,12 @@
+@import url('../assets/fonts/fonts.css');
+@import './variables.scss';
+*,
+*::before,
+*::after {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;
+    color: $color_main_text;
+}
