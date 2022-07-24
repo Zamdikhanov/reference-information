@@ -1,13 +1,13 @@
+
 import Header from "./components/Header/Header";
+import MainPage from "./pages/MainPage/MainPage";
 
 
 function App() {
   return (
     <>
       <Header />
-      <main>
-        Main content in progress
-      </main>
+      <MainPage />
     </>
   );
 }

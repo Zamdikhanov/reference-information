@@ -1,13 +1,16 @@
 @import '../../styles/variables.scss';
 .header {
     height: 80px;
+    @media (max-width: 1279px) {
+        height: 64px;
+    }
 }
 
 .wrap {
     max-width: $width_wrap;
     margin: 0 auto;
     height: 100%;
-    @media (max-width: calc($width_wrap + 32px)) {
+    @media (max-width: calc($width_wrap + 128px)) {
         max-width: 100%;
     }
 }
@@ -17,7 +20,13 @@
     height: 100%;
     justify-content: space-between;
     align-items: center;
-    @media (max-width: calc($width_wrap + 32px)) {
+    @media (max-width: calc($width_wrap + 128px)) {
+        padding: 0 64px;
+    }
+    @media (max-width: 1279px) {
+        padding: 0 32px;
+    }
+    @media (max-width: 767px) {
         padding: 0 16px;
     }
 }
