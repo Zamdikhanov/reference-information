@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 .card {
     display: flex;
     flex-direction: column;
@@ -7,7 +7,7 @@
     height: 100%;
     width: 100%;
     text-decoration: none;
-    padding: 20px;
+    padding: 32px 16px;
     box-shadow: 0 5px 25px $color_gray_dark;
     color: $color_title_text;
     transition: color ease-in-out 0.3s;
@@ -17,10 +17,12 @@
 }
 
 .img_block {
-    height: 64px;
+    height: 96px;
     width: 128px;
-    background-color: $color_gray_light;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .text_block {

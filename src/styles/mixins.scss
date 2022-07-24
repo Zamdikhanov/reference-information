@@ -1,0 +1,21 @@
+@import "./variables.scss";
+@mixin mainWrapMedia() {
+    max-width: $width_wrap;
+    margin: 0 auto;
+    height: 100%;
+    @media (max-width: calc($width_wrap + 128px)) {
+        max-width: 100%;
+    }
+}
+
+@mixin mainContainerMedia() {
+    @media (max-width: calc($width_wrap + 128px)) {
+        padding: 0 64px;
+    }
+    @media (max-width: 1279px) {
+        padding: 0 32px;
+    }
+    @media (max-width: 767px) {
+        padding: 0 16px;
+    }
+}

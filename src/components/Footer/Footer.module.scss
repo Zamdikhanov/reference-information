@@ -1,0 +1,24 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+.footer {
+    margin: auto 0 0;
+    background-color: $color_gray_light;
+    padding: 16px 0 32px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    max-width: $width_wrap;
+    margin: 0 auto;
+    @media (max-width: calc($width_wrap + 128px)) {
+        max-width: 100%;
+    }
+    @include mainContainerMedia;
+}
+
+.copy {
+    font-family: $font_title;
+    color: $color_title_text;
+    font-size: 18px;
+}
