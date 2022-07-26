@@ -8,11 +8,14 @@
     width: 100%;
     text-decoration: none;
     padding: 32px 16px;
-    box-shadow: 0 5px 25px $color_gray_dark;
+    box-shadow: 0 3px 20px $color_gray_dark;
     color: $color_title_text;
-    transition: color ease-in-out 0.3s;
+    transition-property: color, box-shadow;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.3s;
     &:hover {
         color: $color_main_choice;
+        box-shadow: 0 3px 25px $color_gray_dark;
     }
 }
 
@@ -23,6 +26,12 @@
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    transform: scale(1);
+    transition: transform linear 0.5s;
+}
+
+.card:hover .img_block {
+    transform: scale(1.04);
 }
 
 .text_block {
