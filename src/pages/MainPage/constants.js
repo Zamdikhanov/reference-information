@@ -6,21 +6,21 @@ import imgUrlLedBoard from '../../assets/images/category_led_board.png';
 export const categories = [{
         title: 'Светильники',
         imgUrl: imgUrlLamps,
-        linkUrl: '/',
+        linkUrl: '/lamps',
     },
     {
         title: 'Аксессуары',
         imgUrl: imgUrlAccessories,
-        linkUrl: '/',
+        linkUrl: '/accessories',
     },
     {
         title: 'Источники питания',
         imgUrl: imgUrlLedDriver,
-        linkUrl: '/',
+        linkUrl: '/led-drivers',
     },
     {
         title: 'Светодиодный модули',
         imgUrl: imgUrlLedBoard,
-        linkUrl: '/',
+        linkUrl: '/led-board',
     },
 ];

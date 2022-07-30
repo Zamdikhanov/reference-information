@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import css from "./CategoryCard.module.scss";
 
-function CategoryCard({ title, imgUrl }) {
+function CategoryCard({ title, imgUrl, linkUrl }) {
   return (
-    <Link to="#" className={css.card}>
+    <Link to={linkUrl} className={css.card}>
       <div
         style={{ backgroundImage: `url(${imgUrl})` }}
         className={css.img_block}

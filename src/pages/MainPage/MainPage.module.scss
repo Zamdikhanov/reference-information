@@ -4,22 +4,6 @@
     @include mainWrapMedia;
 }
 
-.slider_container {
-    height: 350px;
-    @include mainContainerMedia;
-    @media (max-width: 1279px) {
-        padding: 0 0px;
-    }
-    @media (max-width: 767px) {
-        padding: 0 0px;
-    }
-    &__content {
-        background-color: $color_gray_light;
-        height: 100%;
-        width: 100%;
-    }
-}
-
 .category_container {
     display: block;
     height: 100%;
@@ -45,8 +29,9 @@
 .cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    justify-content: space-between;
     &__card {
+        margin-bottom: 16px;
         flex: 0 1 calc((100% - 16px * 3) / 4);
         @media (max-width: 1279px) {
             flex: 0 1 calc((100% - 16px * 2) / 3);

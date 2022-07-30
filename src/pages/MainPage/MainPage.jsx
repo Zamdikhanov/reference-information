@@ -1,16 +1,13 @@
 import React from "react";
-import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import css from "./MainPage.module.scss";
 import { categories } from "./constants";
+import CategoryCard from "../../components/CategoryCard/CategoryCard";
+import Slider from "../../components/Slider/Slider";
 
 function MainPage() {
   return (
     <main>
-      <div className={css.wrap}>
-        <div className={css.slider_container}>
-          <div className={css.slider_container__content}>slider</div>
-        </div>
-      </div>
+      <Slider />
       <div className={css.wrap}>
         <div className={css.category_container}>
           <h2 className={css.title}>Категории</h2>
@@ -18,7 +15,7 @@ function MainPage() {
             {categories.map((item) => {
               return (
                 <li className={css.cards__card} key={item.title}>
-                  <CategoryCard title={item.title} imgUrl={item.imgUrl} />
+                  <CategoryCard title={item.title} imgUrl={item.imgUrl} linkUrl={item.linkUrl} />
                 </li>
               );
             })}
