@@ -4,20 +4,24 @@ import bgImgUrl03 from '../../assets/images/slider/slide03.jpg';
 
 export const sliders = [{
         id: 1,
-        title: 'Slide 1',
-        text: 'fwefw fewwfew fweewfe fewh r rr r fwfegrg',
+        title: 'ВАШ ПУТЬ К ПРАВИЛЬНОМУ СВЕТУ',
+        text: 'Ульяновская компания на рынке светодиодной продукции с 2013 года. Входим в ТОП крупнейших производителей светодиодной продукции. Держим лидирующую позицию по ритейлу.',
         bgImgUrl: bgImgUrl01,
     },
     {
         id: 2,
-        title: 'Slide 2',
-        text: 'fwefw fewwfew fweewfe f htt trhtr ewfwfegrg',
+        title: 'Общие характеристики продукции',
+        text: 'Гарантия на светильники: 1-я группа светильников с гарантией 5 лет; 2-я группа светильников с гарантией – 7/8 лет. Высокая эффективность светильников - в диапазоне 120-165 лм/Вт и выше. Низкий коэффициент пульсации < 1%. Индекс цветопередачи CRI более 80',
         bgImgUrl: bgImgUrl02,
     },
     {
         id: 3,
-        title: 'Slide 3',
-        text: 'fwefw fewwfew fweewfe fewfwfefg fghf gfhg grg',
+        title: 'Серии светильников',
+        text: `FG – универсальные светильники
+FI – индустриальные светильники
+FT – трековые светильники
+FD – прожекторные светильники
+FP/FW – уличные светильники`,
         bgImgUrl: bgImgUrl03,
     },
 ]
