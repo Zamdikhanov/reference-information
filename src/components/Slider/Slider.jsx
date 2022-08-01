@@ -2,9 +2,9 @@ import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper';
 import { sliders } from "./constants";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import "swiper/css/pagination";
+import 'swiper/scss';
+import 'swiper/scss/navigation';
+import "swiper/scss/pagination";
 import css from "./Slider.module.scss";
 
 

@@ -1,0 +1,49 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+.wrap {
+    @include mainWrapMedia;
+}
+
+.container {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 32px;
+    @media (max-width: 767px) {
+        flex-direction: column;
+    }
+}
+
+.icon {
+    height: 76px;
+    width: 76px;
+    margin-right: 16px;
+}
+
+.text_block {
+    text-align: center;
+}
+
+.title {
+    font-size: 32px;
+    color: $color_title_text;
+    line-height: 1.1;
+    margin-bottom: 0.3em;
+}
+
+.description {
+    font-size: 20px;
+    color: $color_title_text;
+}
+
+.link {
+    font-size: 20px;
+    margin: 0 0.5em;
+    text-decoration: underline dashed $color_title_text 1px;
+    color: $color_main_text;
+    transition: color ease-in-out 0.3s;
+    &:hover {
+        color: $color_main_choice;
+    }
+}

@@ -128,12 +128,15 @@
     line-height: 40px;
     border-radius: 50%;
     cursor: pointer;
-    background: rgba(0, 0, 0, .5);
-    transition: all .5s ease;
+    background-color: rgba(0, 0, 0, .5);
+    transition: background-color .5s ease;
     pointer-events: auto;
     color: #fff;
     @media (max-width: 767px) {
         display: none;
+    }
+    &:hover {
+        background-color: rgba(0, 0, 0, .7);
     }
 }
 
