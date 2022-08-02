@@ -19,6 +19,13 @@
     height: 76px;
     width: 76px;
     margin-right: 16px;
+    fill: $color_title_text;
+    transition: fil, transform ease-in-out 0.3s;
+}
+
+.icon_hover {
+    fill: $color_main_choice;
+    transform: scale(1.1);
 }
 
 .text_block {
@@ -40,7 +47,6 @@
 .link {
     font-size: 20px;
     margin: 0 0.5em;
-    text-decoration: underline dashed $color_title_text 1px;
     color: $color_main_text;
     transition: color ease-in-out 0.3s;
     &:hover {
