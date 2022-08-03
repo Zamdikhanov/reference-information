@@ -3,7 +3,13 @@ import imgUrlAccessories from '../../assets/images/category_accessories.png';
 import imgUrlLedDriver from '../../assets/images/category_led_driver.png';
 import imgUrlLedBoard from '../../assets/images/category_led_board.png';
 
-export const categories = [{
+export type TCategory = {
+    title: string,
+        imgUrl: typeof imgUrlLamps,
+        linkUrl: string,
+}
+
+export const categories: TCategory[] = [{
         title: 'Светильники',
         imgUrl: imgUrlLamps,
         linkUrl: '/lamps',

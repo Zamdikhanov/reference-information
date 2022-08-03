@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { TCategory } from "../../pages/MainPage/constants";
 import css from "./CategoryCard.module.scss";
 
-function CategoryCard({ title, imgUrl, linkUrl }) {
+function CategoryCard({ title, imgUrl, linkUrl }:TCategory) {
   return (
     <Link to={linkUrl} className={css.card}>
       <div

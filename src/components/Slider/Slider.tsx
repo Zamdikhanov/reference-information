@@ -9,8 +9,8 @@ import css from "./Slider.module.scss";
 
 
 function Slider() {
-    const navigationPrevRef = React.useRef(null);
-    const navigationNextRef = React.useRef(null);
+    const navigationPrevRef = React.useRef<HTMLDivElement>(null);
+    const navigationNextRef = React.useRef<HTMLDivElement>(null);
     return (
         <div className={css.wrap}>
             <div className={css.slider_container}>
@@ -22,8 +22,8 @@ function Slider() {
                         loop={true}
                         speed={500}
                         navigation={{
-                            prevEl: navigationPrevRef.current,
-                            nextEl: navigationNextRef.current,
+                            prevEl: navigationPrevRef.current ? navigationPrevRef.current : undefined,
+                            nextEl: navigationNextRef.current ? navigationNextRef.current : undefined,
                         }}
                         onBeforeInit={(swiper) => {
                             swiper.params.navigation.prevEl = navigationPrevRef.current;
