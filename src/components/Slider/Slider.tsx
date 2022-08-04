@@ -26,7 +26,9 @@ function Slider() {
                             nextEl: navigationNextRef.current ? navigationNextRef.current : undefined,
                         }}
                         onBeforeInit={(swiper) => {
+                            /* @ts-ignore */
                             swiper.params.navigation.prevEl = navigationPrevRef.current;
+                            /* @ts-ignore */
                             swiper.params.navigation.nextEl = navigationNextRef.current;
                         }}
                         grabCursor={true}

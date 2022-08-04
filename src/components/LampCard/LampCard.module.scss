@@ -1,0 +1,53 @@
+@import "../../styles/variables.scss";
+.card {
+    display: flex;
+    min-height: 200px;
+    width: 100%;
+    text-decoration: none;
+    padding: 24px;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0);
+    border-top: 1px solid $color_gray_light;
+    transition-property: box-shadow;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.3s;
+    &:first-child {
+        border-top: none;
+    }
+    &:hover {
+        color: $color_main_choice;
+        box-shadow: 0 5px 25px $color_gray_dark;
+    }
+}
+
+.image_block {
+    height: 180px;
+    width: 180px;
+    background-color: $color_gray_light;
+    margin-right: 48px;
+}
+
+.content_block {
+    display: block;
+}
+
+.header {
+    margin-bottom: 16px;
+}
+
+.title {
+    color: $color_title_text;
+    font-family: $font_title;
+    font-size: 18px;
+    line-height: 25px;
+    text-decoration: none;
+    &:hover {
+        color: $color_main_choice;
+    }
+}
+
+.description__list_item {
+    color: $color_main_text;
+    font-family: $font_text;
+    font-size: 14px;
+    line-height: 20px;
+}

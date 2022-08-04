@@ -48,8 +48,14 @@
     display: flex;
     .items_block {
         width: calc( 100% - 300px);
+        @media (max-width: 1023px) {
+            width: 100%;
+        }
     }
     .filters_block {
         width: 300px;
+        @media (max-width: 1023px) {
+            display: none;
+        }
     }
 }

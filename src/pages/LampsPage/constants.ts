@@ -1,4 +1,8 @@
-export const lamps = [{
+export type TLamp = {
+    title: string,
+}
+
+export const lamps: TLamp[] = [{
         title: 'Светильник FL 60',
     },
     {
