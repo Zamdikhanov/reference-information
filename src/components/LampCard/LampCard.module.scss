@@ -4,10 +4,10 @@
     min-height: 200px;
     width: 100%;
     text-decoration: none;
-    padding: 24px;
+    padding: 24px 24px 32px;
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0);
-    border-top: 1px solid $color_gray_light;
-    transition-property: box-shadow;
+    border-top: 1px solid $color_gray_dark;
+    transition-property: box-shadow, border-top-color;
     transition-timing-function: ease-in-out;
     transition-duration: 0.3s;
     &:first-child {
@@ -16,25 +16,60 @@
     &:hover {
         color: $color_main_choice;
         box-shadow: 0 5px 25px $color_gray_dark;
+        border-top-color: transparent;
+        @media (max-width: 767px) {
+            box-shadow: none;
+            border-top-color: $color_gray_dark;
+        }
+    }
+    &:hover+.card {
+        border-top-color: transparent;
+        @media (max-width: 767px) {
+            border-top-color: $color_gray_dark;
+        }
+    }
+    @media (max-width: 767px) {
+        padding: 16px 0px;
     }
 }
 
 .image_block {
-    height: 180px;
-    width: 180px;
+    display: block;
+    flex: 0 0 auto;
+    height: 220px;
+    width: 220px;
     background-color: $color_gray_light;
     margin-right: 48px;
+    @media (max-width: 1279px) {
+        height: 180px;
+        width: 180px;
+        margin-right: 32px;
+    }
+    @media (max-width: 767px) {
+        height: 140px;
+        width: 140px;
+        margin-right: 16px;
+    }
+    @media (max-width: 479px) {
+        height: 80px;
+        width: 80px;
+        margin-right: 8px;
+    }
 }
 
 .content_block {
     display: block;
+    flex: 1 1 auto;
 }
 
 .header {
+    width: 100%;
     margin-bottom: 16px;
+    border-bottom: 1px solid $color_gray_light;
 }
 
 .title {
+    display: block;
     color: $color_title_text;
     font-family: $font_title;
     font-size: 18px;
@@ -43,11 +78,35 @@
     &:hover {
         color: $color_main_choice;
     }
+    @media (max-width: 767px) {
+        font-size: 14px;
+    }
+}
+
+.designation {
+    display: block;
+    color: $color_main_text;
+    font-family: $font_text;
+    font-size: 12px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    @media (max-width: 767px) {
+        font-size: 10px;
+    }
 }
 
 .description__list_item {
     color: $color_main_text;
     font-family: $font_text;
     font-size: 14px;
-    line-height: 20px;
+    line-height: 1.43;
+    @media (max-width: 767px) {
+        font-size: 12px;
+    }
+    & span {
+        color: $color_title_text;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
 }

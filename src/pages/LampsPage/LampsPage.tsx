@@ -3,7 +3,6 @@ import css from "./LampsPage.module.scss";
 import { lamps } from "./constants";
 import Filters from "../../components/Filters/Filters";
 import LampCard from "../../components/LampCard/LampCard";
-import { title } from "process";
 
 function LampsPage() {
   return (
@@ -18,7 +17,7 @@ function LampsPage() {
             <div className={css.items_block}>
               {
                 lamps.map((lamp) => { 
-                  return <LampCard title={lamp.title} />;
+                  return <LampCard key={lamp.id} {...lamp} />;
                 })
               }
               </div>
