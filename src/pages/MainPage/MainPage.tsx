@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import css from "./MainPage.module.scss";
 import { categories } from "./constants";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import Slider from "../../components/Slider/Slider";
 
 function MainPage() {
+
+  useEffect(()=> {
+    window.scrollTo(0,0);
+  }, [])
+  
   return (
     <main>
       <Slider />

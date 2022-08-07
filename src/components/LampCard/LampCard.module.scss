@@ -36,22 +36,22 @@
 .image_block {
     display: block;
     flex: 0 0 auto;
-    height: 220px;
+    min-height: 220px;
     width: 220px;
-    background-color: $color_gray_light;
     margin-right: 48px;
+    margin-bottom: 8px;
     @media (max-width: 1279px) {
-        height: 180px;
+        min-height: 180px;
         width: 180px;
         margin-right: 32px;
     }
     @media (max-width: 767px) {
-        height: 140px;
+        min-height: 140px;
         width: 140px;
         margin-right: 16px;
     }
     @media (max-width: 479px) {
-        height: 80px;
+        min-height: 80px;
         width: 80px;
         margin-right: 8px;
     }
@@ -64,12 +64,13 @@
 
 .header {
     width: 100%;
-    margin-bottom: 16px;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
     border-bottom: 1px solid $color_gray_light;
 }
 
 .title {
-    display: block;
+    display: inline-block;
     color: $color_title_text;
     font-family: $font_title;
     font-size: 18px;
@@ -89,7 +90,6 @@
     font-family: $font_text;
     font-size: 12px;
     line-height: 1.2;
-    margin-bottom: 16px;
     @media (max-width: 767px) {
         font-size: 10px;
     }
