@@ -1,31 +1,40 @@
 {
   "files": {
-    "main.css": "/reference-information/static/css/main.bf96950f.css",
-    "main.js": "/reference-information/static/js/main.24e017d0.js",
+    "main.css": "/reference-information/static/css/main.277cf978.css",
+    "main.js": "/reference-information/static/js/main.baebd924.js",
     "static/media/Helvetica.ttf": "/reference-information/static/media/Helvetica.06113bf748ae7dc33e05.ttf",
     "static/media/Helvetica-Bold.ttf": "/reference-information/static/media/Helvetica-Bold.ed57aca7292971d8548c.ttf",
     "static/media/Roboto-Regular.ttf": "/reference-information/static/media/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf",
     "static/media/slide03.jpg": "/reference-information/static/media/slide03.71666e2d02b1b175ad88.jpg",
     "static/media/slide01.jpg": "/reference-information/static/media/slide01.459a0e86a5b95005bc92.jpg",
     "static/media/slide02.jpg": "/reference-information/static/media/slide02.74f986ac2879adda9515.jpg",
+    "static/media/fg-120-150-01.jpg": "/reference-information/static/media/fg-120-150-01.05506226610366d3996e.jpg",
+    "static/media/fg-120-220-01.jpg": "/reference-information/static/media/fg-120-220-01.ae0d680dc7289895d7fc.jpg",
+    "static/media/fg-120-100-01.jpg": "/reference-information/static/media/fg-120-100-01.7dd14fca439774174bbd.jpg",
     "static/media/category_led_board.png": "/reference-information/static/media/category_led_board.6c4f9ed79799a5ce96df.png",
-    "static/media/fl-60-03.jpg": "/reference-information/static/media/fl-60-03.c35be5343d17ecb71a86.jpg",
+    "static/media/fg-120-150-02.jpg": "/reference-information/static/media/fg-120-150-02.998090024903c3cf05e6.jpg",
+    "static/media/fg-120-220-02.jpg": "/reference-information/static/media/fg-120-220-02.696ca2815c85ae8f2724.jpg",
+    "static/media/fl-60-03.jpg": "/reference-information/static/media/fl-60-03.2b372a0b21080d3066a0.jpg",
+    "static/media/fg-120-100-02.jpg": "/reference-information/static/media/fg-120-100-02.cda611daa95e72a03cf1.jpg",
     "static/media/category_led_driver.png": "/reference-information/static/media/category_led_driver.b9e2ead0f38a7882bfd2.png",
+    "static/media/fl-60-design-02.jpg": "/reference-information/static/media/fl-60-design-02.f949807c7ee455c8e9fe.jpg",
     "static/media/category_accessories.png": "/reference-information/static/media/category_accessories.0c513b5ae27a95717498.png",
     "static/media/fl-60-02.jpg": "/reference-information/static/media/fl-60-02.16b9d2c36a3724f7824d.jpg",
     "static/media/category_lamps.png": "/reference-information/static/media/category_lamps.c18b45eb0ca077242745.png",
     "static/media/fl-60-01.jpg": "/reference-information/static/media/fl-60-01.d5eac93b8be616e4167b.jpg",
+    "static/media/fl-60-design-01.jpg": "/reference-information/static/media/fl-60-design-01.d0fdd6e3a2a8ffd8d499.jpg",
     "static/media/broken_lamp_icon.svg": "/reference-information/static/media/broken_lamp_icon.0b4ce9a953ee2a743234f5197d009142.svg",
     "static/media/group_people.svg": "/reference-information/static/media/group_people.d23af106ca0caf8fd194.svg",
     "static/media/github_logo_icon.svg": "/reference-information/static/media/github_logo_icon.1855501b162bbcca618b0571ab2f4d75.svg",
     "static/media/rd_logo.svg": "/reference-information/static/media/rd_logo.de023a75fcec7d52100103a272de8fb9.svg",
     "static/media/vk_logo_icon.svg": "/reference-information/static/media/vk_logo_icon.fefca5badc4f72d54d8aed8317b695b0.svg",
+    "static/media/no_image.svg": "/reference-information/static/media/no_image.942109fe676ed7777b748f774871cce7.svg",
     "index.html": "/reference-information/index.html",
-    "main.bf96950f.css.map": "/reference-information/static/css/main.bf96950f.css.map",
-    "main.24e017d0.js.map": "/reference-information/static/js/main.24e017d0.js.map"
+    "main.277cf978.css.map": "/reference-information/static/css/main.277cf978.css.map",
+    "main.baebd924.js.map": "/reference-information/static/js/main.baebd924.js.map"
   },
   "entrypoints": [
-    "static/css/main.bf96950f.css",
-    "static/js/main.24e017d0.js"
+    "static/css/main.277cf978.css",
+    "static/js/main.baebd924.js"
   ]
 }
