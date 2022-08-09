@@ -13,7 +13,6 @@
     left: 0;
     width: 100%;
     padding-top: 100%;
-    background-color: $color_gray_light;
     &__inner {
         display: flex;
         position: absolute;
@@ -53,7 +52,7 @@
         height: 100%;
         width: 4px;
         background-color: $color_gray_dark;
-        &:not(last-child) {
+        &:not(:last-child) {
             margin-right: 8px;
         }
     }

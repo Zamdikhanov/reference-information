@@ -5,7 +5,7 @@ import imgUrlLedBoard from '../../assets/images/category_led_board.png';
 
 export type TCategory = {
     title: string,
-        imgUrl: typeof imgUrlLamps,
+        imgUrl: string,
         linkUrl: string,
 }
 

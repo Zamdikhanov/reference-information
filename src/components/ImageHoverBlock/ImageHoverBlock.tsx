@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import noImage from '../../assets/images/no_image.svg';
 import css from "./ImageHoverBlock.module.scss";
 
 type TProps = {
@@ -7,9 +8,10 @@ type TProps = {
   imgUrl?: string[];
 }
 
-function ImageHoverBlock({link="/", imgUrl=[""]}:TProps) {
+function ImageHoverBlock({link="/", imgUrl=[noImage]}:TProps) {
 
   const [currentImageUrl, setCurrentImageUrl] = useState(imgUrl[0]);
+  const [hasError, setHasError] = useState(false);
 
   const changeImage = (img:string) => {
     setCurrentImageUrl(img);
@@ -21,7 +23,12 @@ function ImageHoverBlock({link="/", imgUrl=[""]}:TProps) {
           <div className={css.image_block__inner}>
             {imgUrl.map(img=> (
               <>
-              <img className={currentImageUrl===img ? `${css.image_block__image} ${css.image_block__image_active}` : css.image_block__image} key={img} src={img} alt='lamp' loading='lazy'></img>
+              <img className={currentImageUrl===img ? `${css.image_block__image} ${css.image_block__image_active}` : css.image_block__image} 
+                key={img} 
+                onError={() => setHasError(true)}
+                src={hasError ? noImage : img} alt='lamp' 
+                loading='lazy'
+              />
               <div className={css.image_block__hover_area} key={img} onMouseOver={()=>changeImage(img)}></div>
               </>
             ))}

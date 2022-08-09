@@ -1,6 +1,14 @@
 import imgFL60_01 from '../../assets/images/product/lamps/fl-60-01.jpg';
 import imgFL60_02 from '../../assets/images/product/lamps/fl-60-02.jpg';
 import imgFL60_03 from '../../assets/images/product/lamps/fl-60-03.jpg';
+import imgFL60D_01 from '../../assets/images/product/lamps/fl-60-design-01.jpg';
+import imgFL60D_02 from '../../assets/images/product/lamps/fl-60-design-02.jpg';
+import imgFG120_01 from '../../assets/images/product/lamps/fg-120-220-01.jpg';
+import imgFG120_02 from '../../assets/images/product/lamps/fg-120-220-02.jpg';
+import imgFG120_03 from '../../assets/images/product/lamps/fg-120-150-01.jpg';
+import imgFG120_04 from '../../assets/images/product/lamps/fg-120-150-02.jpg';
+import imgFG120_05 from '../../assets/images/product/lamps/fg-120-100-01.jpg';
+import imgFG120_06 from '../../assets/images/product/lamps/fg-120-100-02.jpg';
 
 export type TLamp = {
     id: string,
@@ -42,7 +50,7 @@ export const lamps: TLamp[] = [{
     id: "lamp002",
     title: "FL 60 DESIGN",
     designation: ["KOP111"],
-    imgUrl: ["https://thumb.cloud.mail.ru/weblink/thumb/xw1/bEca/Lry1s9QeV", "https://thumb.cloud.mail.ru/weblink/thumb/xw1/pL1A/8M5jCpYkX", "https://thumb.cloud.mail.ru/weblink/thumb/xw1/6XDX/qCbs13f9m"],
+    imgUrl: [imgFL60D_01, imgFL60D_02, imgFL60_01, imgFL60_02, imgFL60_03],
     ip: "IP20",
     climate: ["УХЛ3.1"],
     type: "линейный",
@@ -98,7 +106,7 @@ export const lamps: TLamp[] = [{
     id: "lamp005",
     title: "FG 120",
     designation: ["KOP082"],
-    imgUrl: ["/"],
+    imgUrl: [imgFG120_01, imgFG120_02, imgFG120_03, imgFG120_04, imgFG120_05, imgFG120_06],
     ip: "IP65",
     climate: ["УХЛ2", ],
     type: "подвесной",
