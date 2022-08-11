@@ -1,0 +1,33 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: fit-content;
+    min-width: 140px;
+    border: 1px solid $color_main_choice;
+    border-radius: 6px;
+    background-color: $color_main_choice;
+    font-size: 16px;
+    font-family: $font_title;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #fff;
+    cursor: pointer;
+    transition-property: color, background-color;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.3s;
+    &:hover {
+        background-color: #fff;
+        color: $color_main_choice;
+    }
+    @media (max-width: 767px) {
+        height: 30px;
+        font-size: 14px;
+    }
+}

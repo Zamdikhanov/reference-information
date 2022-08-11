@@ -95,6 +95,17 @@
     }
 }
 
+.description_block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    column-gap: 24px;
+    row-gap: 16px;
+    @media (max-width: 1023px) {
+        flex-direction: column;
+    }
+}
+
 .description__list_item {
     color: $color_main_text;
     font-family: $font_text;

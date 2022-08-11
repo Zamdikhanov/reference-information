@@ -7,7 +7,9 @@
 .container {
     display: block;
     height: 100%;
-    margin-bottom: 32px;
+    &:last-child {
+        margin-bottom: 32px;
+    }
     @include mainContainerMedia;
     @media (max-width: 1279px) {
         margin-bottom: 24px;
@@ -16,6 +18,10 @@
 
 .header_container {
     padding: 16px 0 32px;
+    @media (max-width: 1023px) {
+        background-color: $color_gray_light;
+        ;
+    }
 }
 
 .title,
