@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/reference-information/static/css/main.c824ee37.css",
-    "main.js": "/reference-information/static/js/main.0038ad0d.js",
+    "main.css": "/reference-information/static/css/main.92168e5f.css",
+    "main.js": "/reference-information/static/js/main.295181e8.js",
     "static/media/Helvetica.ttf": "/reference-information/static/media/Helvetica.06113bf748ae7dc33e05.ttf",
     "static/media/Helvetica-Bold.ttf": "/reference-information/static/media/Helvetica-Bold.ed57aca7292971d8548c.ttf",
     "static/media/Roboto-Regular.ttf": "/reference-information/static/media/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf",
@@ -30,11 +30,11 @@
     "static/media/vk_logo_icon.svg": "/reference-information/static/media/vk_logo_icon.fefca5badc4f72d54d8aed8317b695b0.svg",
     "static/media/no_image.svg": "/reference-information/static/media/no_image.942109fe676ed7777b748f774871cce7.svg",
     "index.html": "/reference-information/index.html",
-    "main.c824ee37.css.map": "/reference-information/static/css/main.c824ee37.css.map",
-    "main.0038ad0d.js.map": "/reference-information/static/js/main.0038ad0d.js.map"
+    "main.92168e5f.css.map": "/reference-information/static/css/main.92168e5f.css.map",
+    "main.295181e8.js.map": "/reference-information/static/js/main.295181e8.js.map"
   },
   "entrypoints": [
-    "static/css/main.c824ee37.css",
-    "static/js/main.0038ad0d.js"
+    "static/css/main.92168e5f.css",
+    "static/js/main.295181e8.js"
   ]
 }
