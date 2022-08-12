@@ -16,34 +16,36 @@
     }
 }
 
-.header_container {
-    padding: 16px 0 32px;
+.container_color {
     @media (max-width: 1023px) {
         background-color: $color_gray_light;
-        ;
     }
+}
+
+.header_container {
+    padding: 16px 0 32px;
 }
 
 .title,
 .item_count {
-    display: inline;
+    display: inline-block;
     font-family: $font_title;
     color: $color_title_text;
     font-weight: 700;
     font-size: 32px;
-    padding: 32px 0px;
+    padding: 16px 0px 32px;
     margin-right: 0.5em;
     @media (max-width: 1279px) {
         font-size: 24px;
-        padding: 24px 0px;
+        padding: 16px 0px 24px;
     }
     @media (max-width: 767px) {
         font-size: 20px;
-        padding: 20px 0px;
+        padding: 8px 0px 20px;
     }
     @media (max-width: 479px) {
-        font-size: 18px;
-        padding: 18px 0px;
+        font-size: 16px;
+        padding: 8px 0px 18px;
     }
 }
 

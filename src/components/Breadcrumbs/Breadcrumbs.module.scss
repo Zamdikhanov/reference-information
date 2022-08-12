@@ -1,0 +1,29 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+.nav {
+    display: block;
+}
+
+.list {
+    display: flex;
+}
+
+.list_item {
+    margin-right: 0.2em;
+    &:not(:last-child) {
+        &::after {
+            content: ' /';
+        }
+    }
+}
+
+.navlink {
+    text-decoration: none;
+    &:hover {
+        color: $color_main_choice;
+    }
+}
+
+.last {
+    color: $color_gray_dark;
+}

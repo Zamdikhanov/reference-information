@@ -1,4 +1,5 @@
 import React, {FC} from "react";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import css from "./ProductLayout.module.scss";
 
 type TProductLayoutProps = {
@@ -12,8 +13,9 @@ const ProductLayout: FC <TProductLayoutProps> = ({title, count, mainContent, fil
   return (
     <main>
       <div className={css.wrap}>
-        <div className={css.container}>
+        <div className={`${css.container} ${css.container_color}`}>
           <div className={css.header_container}>
+            <Breadcrumbs />
             <h2 className={css.title}>{title}</h2>
             <span className={css.item_count}>{`моделей: ${count}`}</span>
           </div>

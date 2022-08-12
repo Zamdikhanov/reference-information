@@ -41,7 +41,7 @@ function LampCard(props:TLamp): JSX.Element {
             <li className={css.description__list_item}>Материал: <span>{material}</span></li>
             <li className={css.description__list_item}>Рассеиватели/линзы: <span>{lens?.join(', ')}</span></li>
           </ul>
-        <Button buttonType={'link'}  url={id}>Подробнее</Button>
+          <Button buttonType={'link'} url={id}>Подробнее</Button>
         </div>
       </div>
     </div>
