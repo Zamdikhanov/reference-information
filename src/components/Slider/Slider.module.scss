@@ -149,3 +149,7 @@
     bottom: 30px;
     right: 30px;
 }
+
+[class*='swiper-button-'] {
+    display: none;
+}

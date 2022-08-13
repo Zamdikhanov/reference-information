@@ -33,19 +33,19 @@
     color: $color_title_text;
     font-weight: 700;
     font-size: 32px;
-    padding: 16px 0px 32px;
-    margin-right: 0.5em;
+    margin: 16px 0.5em 32px 0;
+    // margin-right: 0.5em;
     @media (max-width: 1279px) {
         font-size: 24px;
-        padding: 16px 0px 24px;
+        margin: 16px 0.5em 24px 0;
+    }
+    @media (max-width: 1023px) {
+        display: block;
+        margin: 16px 0px;
     }
     @media (max-width: 767px) {
         font-size: 20px;
-        padding: 8px 0px 20px;
-    }
-    @media (max-width: 479px) {
-        font-size: 16px;
-        padding: 8px 0px 18px;
+        margin: 8px 0px;
     }
 }
 
