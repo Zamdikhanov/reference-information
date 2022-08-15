@@ -4,16 +4,11 @@ import Header from "./components/Header/Header";
 import LampsPage from "./pages/LampsPage/LampsPage";
 import MainPage from "./pages/MainPage/MainPage";
 import NotFound from "./pages/NotFound/NotFound";
+import css from "./styles/App.module.scss";
 
 function App() {
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <div className={css.app_container} >
       <Header />
 
       <Routes>
