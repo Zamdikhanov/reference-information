@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import entityApi from "../../api/api";
 import Filters from "../../components/Filters/Filters";
 import LampCard from "../../components/LampCard/LampCard";
@@ -7,14 +8,17 @@ import { TLamp } from "./constants";
 
 function LampsPage() {
 
-let [lamps, setLamps]=useState([]);
+  let [lamps, setLamps]=useState([]);
+  const [searchParams] = useSearchParams();
 
-useEffect(()=>{
-  (async function() {
-    let lampsdd = await entityApi.getEntity({entity:'lamps'});
-    setLamps(lampsdd?.data);
-  })()
-},[])
+  let options = `title=${searchParams.get('title')||''}`;
+
+  useEffect(()=>{
+    (async function() {
+      let responce = await entityApi.getEntity({entity:'lamps', options: options});
+      setLamps(responce?.data);
+    })()
+  },[options])
 
   return (
       <ProductLayout

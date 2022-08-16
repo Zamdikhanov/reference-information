@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { filters } from './constants';
 import css from "./Filters.module.scss";
 
@@ -24,9 +25,28 @@ function Filters() {
 function RadioBlock(filter: TFilter) {
 
   const [checkedRadio, setCheckedRadio] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  let query = searchParams.get(filter.searchparams);
+
+  useEffect(()=>{
+    for (let i=0; i < filter.data.length;  i++) {
+      if (filter.data[i] === query) {
+        setCheckedRadio(i);
+        break;
+      }
+    }
+  },[])
 
   const handleChange = (index:number) => {
     setCheckedRadio(index);
+    let param;
+    if (filter.data[index]==="Все") {
+      param = {[filter.searchparams] : ''};
+    } else {
+      param = {[filter.searchparams] : filter.data[index]};
+    }
+    setSearchParams(param);
   }
 
   return (
@@ -59,6 +79,5 @@ function RadioBlock(filter: TFilter) {
   )
 }
 
-
-
 export default Filters
+

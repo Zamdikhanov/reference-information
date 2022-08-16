@@ -6,6 +6,6 @@ export const filters: TFilter[] = [
         type: "radio",
         title: "Серия светильников",
         searchparams: "title",
-        data: ["Все", "FD", "FG", "FI", "FL", "FM", "FP", "FT", "FW"]
+        data: ["Все", "FG", "FL", "FT"]
     }
 ]

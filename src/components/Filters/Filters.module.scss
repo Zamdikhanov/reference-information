@@ -21,6 +21,7 @@
         font-weight: 700;
         font-size: 16px;
         line-height: 16px;
+        margin-bottom: 8px;
     }
 }
 
@@ -30,21 +31,16 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        padding-top: 8px;
-        margin: 0;
+        padding: 5px 0;
+        border: none;
         &__input_radio {
-            margin-right: 0.5em;
-            margin-bottom: 0.2em;
+            @include radio_input;
         }
         &__label_text {
+            @include radio_label;
             font-family: $font_text;
             color: $color_main_text;
             font-weight: normal;
-            transition: color ease-in-out 0.3s;
-        }
-        &:hover .radio__label_text {
-            color: $color_title_text;
-            font-weight: 700;
         }
     }
 }
