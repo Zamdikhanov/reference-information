@@ -1,5 +1,5 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixins.scss";
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 .wrap {
     @include mainWrapMedia;
 }
@@ -34,7 +34,6 @@
     font-weight: 700;
     font-size: 32px;
     margin: 16px 0.5em 32px 0;
-    // margin-right: 0.5em;
     @media (max-width: 1279px) {
         font-size: 24px;
         margin: 16px 0.5em 24px 0;
@@ -58,7 +57,7 @@
 .main_container {
     display: flex;
     .items_block {
-        width: calc( 100% - 300px);
+        width: calc(100% - 300px);
         @media (max-width: 1023px) {
             width: 100%;
         }

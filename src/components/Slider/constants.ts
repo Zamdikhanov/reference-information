@@ -2,7 +2,8 @@ import bgImgUrl01 from '../../assets/images/slider/slide01.jpg';
 import bgImgUrl02 from '../../assets/images/slider/slide02.jpg';
 import bgImgUrl03 from '../../assets/images/slider/slide03.jpg';
 
-export const sliders = [{
+export const sliders = [
+    {
         id: 1,
         title: 'ВАШ ПУТЬ К ПРАВИЛЬНОМУ СВЕТУ',
         text: 'Ульяновская компания на рынке светодиодной продукции с 2013 года. Входим в ТОП крупнейших производителей светодиодной продукции. Держим лидирующую позицию по ритейлу.',
@@ -24,4 +25,4 @@ FD – прожекторные светильники
 FP/FW – уличные светильники`,
         bgImgUrl: bgImgUrl03,
     },
-]
+];

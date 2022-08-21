@@ -5,20 +5,24 @@ const instance = axios.create({
 });
 
 const entityApi = {
-    getEntity({ entity='lamps', page = 0, limit = 0, options = '' }) {
+    getEntity({ entity = 'lamps', page = 0, limit = 0, options = '' }) {
         return instance
-            .get(`/${entity}?${options}${page ? `page=${page}` : ''}${limit ?`&limit=${limit}`:''}`)
+            .get(
+                `/${entity}?${options}${page ? `page=${page}` : ''}${
+                    limit ? `&limit=${limit}` : ''
+                }`,
+            )
             .catch(function (error) {
-                console.log('ошибка загрузки')
+                console.log('ошибка загрузки');
             });
     },
-    putEntity({ entity='lamps', id='0', data={} }) {
+    putEntity({ entity = 'lamps', id = '0', data = {} }) {
         return instance.put(`/${entity}/${id}`, data);
     },
-    postEntity({ entity='lamps', data={} }) {
+    postEntity({ entity = 'lamps', data = {} }) {
         return instance.post(`/${entity}`, data);
     },
-    deleteEntity({ entity='lamps', id='0' }) {
+    deleteEntity({ entity = 'lamps', id = '0' }) {
         return instance.delete(`/${entity}/${id}`);
     },
 };

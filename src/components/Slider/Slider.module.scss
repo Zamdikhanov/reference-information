@@ -1,5 +1,5 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixins.scss";
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 .wrap {
     @include mainWrapMedia;
 }
@@ -24,7 +24,7 @@
         overflow: hidden;
         background-color: $color_gray_light;
         height: 100%;
-        flex: 0 1 calc((100% - 16px*3) / 4*3 + 2*16px);
+        flex: 0 1 calc((100% - 16px * 3) / 4 * 3 + 2 * 16px);
         @media (max-width: 1279px) {
             flex: auto;
             width: 100%;
@@ -40,7 +40,7 @@
         background-size: 300px 300px;
         color: #fff;
         height: 100%;
-        flex: 0 1 calc((100% - 16px*3) / 4);
+        flex: 0 1 calc((100% - 16px * 3) / 4);
         padding: 32px;
         @media (max-width: 1279px) {
             display: none;
@@ -128,15 +128,15 @@
     line-height: 40px;
     border-radius: 50%;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, .5);
-    transition: background-color .5s ease;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.5s ease;
     pointer-events: auto;
     color: #fff;
     @media (max-width: 767px) {
         display: none;
     }
     &:hover {
-        background-color: rgba(0, 0, 0, .7);
+        background-color: rgba(0, 0, 0, 0.7);
     }
 }
 

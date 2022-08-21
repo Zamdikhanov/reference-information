@@ -1,12 +1,11 @@
-import React from "react";
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper';
-import { sliders } from "./constants";
+import { sliders } from './constants';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
-import "swiper/scss/pagination";
-import css from "./Slider.module.scss";
-
+import 'swiper/scss/pagination';
+import css from './Slider.module.scss';
 
 function Slider() {
     const navigationPrevRef = React.useRef<HTMLDivElement>(null);
@@ -22,8 +21,12 @@ function Slider() {
                         loop={true}
                         speed={500}
                         navigation={{
-                            prevEl: navigationPrevRef.current ? navigationPrevRef.current : undefined,
-                            nextEl: navigationNextRef.current ? navigationNextRef.current : undefined,
+                            prevEl: navigationPrevRef.current
+                                ? navigationPrevRef.current
+                                : undefined,
+                            nextEl: navigationNextRef.current
+                                ? navigationNextRef.current
+                                : undefined,
                         }}
                         onBeforeInit={(swiper) => {
                             /* @ts-ignore */
@@ -35,26 +38,31 @@ function Slider() {
                         autoplay={{ delay: 5000 }}
                         className="swiper"
                     >
-                        {
-                            sliders.map(slide => (
-                                <SwiperSlide key={slide.id}>
-                                    <div className={css.slide} style={{ backgroundImage: `url(${slide.bgImgUrl})` }}>
-                                        <div className={css.slide__text_block}>
-                                            <h3 className={css.title}>{slide.title}</h3>
-                                            <div className={css.text}>{slide.text}</div>
-                                        </div>
+                        {sliders.map((slide) => (
+                            <SwiperSlide key={slide.id}>
+                                <div
+                                    className={css.slide}
+                                    style={{ backgroundImage: `url(${slide.bgImgUrl})` }}
+                                >
+                                    <div className={css.slide__text_block}>
+                                        <h3 className={css.title}>{slide.title}</h3>
+                                        <div className={css.text}>{slide.text}</div>
                                     </div>
-                                </SwiperSlide>
-                            ))
-                        }
-                        <div ref={navigationPrevRef} className={css.prev_button}>{String.fromCharCode(10094)}</div>
-                        <div ref={navigationNextRef} className={css.next_button}>{String.fromCharCode(10095)}</div>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                        <div ref={navigationPrevRef} className={css.prev_button}>
+                            {String.fromCharCode(10094)}
+                        </div>
+                        <div ref={navigationNextRef} className={css.next_button}>
+                            {String.fromCharCode(10095)}
+                        </div>
                     </Swiper>
                 </div>
                 <div className={css.slider_container__information_block}>
                     <h3 className={css.information_block__title}>Миссия компании: </h3>
-                    Производить светильники высокого качества
-                    по доступной цене, предвосхищая потребности клиента, обеспечивая лучший сервис и широкий ассортимент.
+                    Производить светильники высокого качества по доступной цене, предвосхищая
+                    потребности клиента, обеспечивая лучший сервис и широкий ассортимент.
                 </div>
             </div>
         </div>
