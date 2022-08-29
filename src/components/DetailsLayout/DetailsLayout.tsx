@@ -1,23 +1,16 @@
 import React, { FC } from 'react';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import Loader from '../Loader/Loader';
-import css from './ProductLayout.module.scss';
+import css from './DetailsLayout.module.scss';
 
-type TProductLayoutProps = {
+type TDetailsLayoutProps = {
     title: string;
-    count: number;
-    mainContent: any[];
-    filters?: any;
+    children: any;
     isLoading?: boolean;
+    designation?: string[];
 };
 
-const ProductLayout: FC<TProductLayoutProps> = ({
-    title,
-    count,
-    mainContent,
-    filters,
-    isLoading,
-}) => {
+const DetailsLayout: FC<TDetailsLayoutProps> = ({ title, designation, children, isLoading }) => {
     return (
         <main>
             <div className={css.wrap}>
@@ -25,21 +18,16 @@ const ProductLayout: FC<TProductLayoutProps> = ({
                     <div className={css.header_container}>
                         <Breadcrumbs />
                         <h2 className={css.title}>{title}</h2>
-                        <span className={css.item_count}>{`моделей: ${count}`}</span>
+                        <span className={css.header_container__text}>
+                            Обозначение: {designation?.join(', ')}
+                        </span>
                     </div>
                 </div>
                 <div className={css.container}>
                     <div className={css.main_container}>
                         <div className={css.items_block}>
-                            {isLoading ? (
-                                <Loader />
-                            ) : mainContent.length ? (
-                                mainContent
-                            ) : (
-                                'Ничего не найдено'
-                            )}
+                            {isLoading ? <Loader /> : <div>{children}</div>}
                         </div>
-                        {filters && <div className={css.filters_block}>{filters}</div>}
                     </div>
                 </div>
             </div>
@@ -47,4 +35,4 @@ const ProductLayout: FC<TProductLayoutProps> = ({
     );
 };
 
-export default ProductLayout;
+export default DetailsLayout;
