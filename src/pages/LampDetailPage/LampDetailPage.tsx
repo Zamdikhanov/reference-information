@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import entityApi from '../../api/api';
+import DescriptionBlock from '../../components/DetailsLayout/DescriptionBlock/DescriptionBlock';
 import DetailsLayout from '../../components/DetailsLayout/DetailsLayout';
 import { TLamp } from '../LampsPage/constants';
 
@@ -28,6 +29,9 @@ function LampDetailPage() {
             designation={data?.designation}
             isLoading={isLoading}
         >
+            <DescriptionBlock {...data} />
+            <br />
+            <br />
             <>Страница в разработке</>
         </DetailsLayout>
     );
