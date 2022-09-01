@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import { FreeMode, Navigation, Thumbs } from 'swiper';
 import 'swiper/scss';
+import 'swiper/scss/free-mode';
 import 'swiper/scss/navigation';
-import 'swiper/scss/pagination';
+import 'swiper/scss/thumbs';
 import { TLamp } from '../../../pages/LampsPage/constants';
 import css from './DescriptionBlock.module.scss';
 
@@ -23,22 +24,46 @@ function DescriptionBlock(props: TLamp): JSX.Element {
         powerRange,
         lens,
     } = props;
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
     return (
         <div className={css.description_block}>
             <div className={css.slider}>
                 <Swiper
-                    modules={[Navigation]}
+                    loop={true}
+                    navigation={true}
+                    thumbs={{ swiper: thumbsSwiper }}
+                    modules={[FreeMode, Navigation, Thumbs]}
                     spaceBetween={0}
                     slidesPerView={1}
                     speed={500}
-                    grabCursor={true}
-                    className="swiper"
+                    className={css.swiper}
                 >
                     {imgUrl &&
                         imgUrl.map((slide) => (
-                            <SwiperSlide key={slide} style={{ height: '100%;' }}>
+                            <SwiperSlide key={slide}>
                                 <div
                                     className={css.slide}
+                                    style={{ backgroundImage: `url(${slide})` }}
+                                ></div>
+                            </SwiperSlide>
+                        ))}
+                </Swiper>
+                <Swiper
+                    // onSwiper={setThumbsSwiper}
+                    direction="vertical"
+                    loop={true}
+                    spaceBetween={10}
+                    slidesPerView={4}
+                    freeMode={true}
+                    watchSlidesProgress={true}
+                    modules={[FreeMode, Navigation, Thumbs]}
+                    className={css.swiper2}
+                >
+                    {imgUrl &&
+                        imgUrl.map((slide) => (
+                            <SwiperSlide key={slide}>
+                                <div
+                                    className={css.slide2}
                                     style={{ backgroundImage: `url(${slide})` }}
                                 ></div>
                             </SwiperSlide>
