@@ -19,7 +19,7 @@ const DetailsLayout: FC<TDetailsLayoutProps> = ({ title, designation, children, 
                         <Breadcrumbs />
                         <h2 className={css.title}>{title}</h2>
                         <span className={css.header_container__text}>
-                            Обозначение: {designation?.join(', ')}
+                            {designation && <>Обозначение: {designation.join(', ')}</>}
                         </span>
                     </div>
                 </div>

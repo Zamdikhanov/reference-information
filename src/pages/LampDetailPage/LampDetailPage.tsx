@@ -7,7 +7,7 @@ import { TLamp } from '../LampsPage/constants';
 
 function LampDetailPage() {
     const { id } = useParams();
-    let [data, setData] = useState<TLamp>({ id: '00', title: 'Загрузка', series: 'null' });
+    let [data, setData] = useState<TLamp>({ id: '00', title: 'загрузка', series: 'null' });
     let [isLoading, setIsLoading] = useState(true);
 
     let options = `id=${id}`;
@@ -25,14 +25,20 @@ function LampDetailPage() {
 
     return (
         <DetailsLayout
-            title={`Светильник ${data?.title}`}
+            title={`Светильник ${data?.title || 'не найден'}`}
             designation={data?.designation}
             isLoading={isLoading}
         >
-            <DescriptionBlock {...data} />
-            <br />
-            <br />
-            <>Страница в разработке</>
+            {!data ? (
+                <>Извините, по вашему запросу ничего не найдено</>
+            ) : (
+                <>
+                    <DescriptionBlock {...data} />
+                    <br />
+                    <br />
+                    <>Страница в разработке</>
+                </>
+            )}
         </DetailsLayout>
     );
 }
