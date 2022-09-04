@@ -20,7 +20,10 @@ function DescriptionBlock(props: TLamp): JSX.Element {
                     <div className={css.slider__container_small}>
                         <Swiper
                             // @ts-ignore
-                            // onSwiper={setThumbsSwiper}
+                            // onSwiper={(swiper) => {
+                            //     setThumbsSwiper(swiper);
+                            // }}
+                            grabCursor
                             modules={[FreeMode, Navigation, Thumbs]}
                             direction="vertical"
                             spaceBetween={10}
@@ -48,7 +51,6 @@ function DescriptionBlock(props: TLamp): JSX.Element {
                             loop={true}
                             spaceBetween={50}
                             effect="fade"
-                            // navigation
                             navigation={{
                                 nextEl: '.ne',
                                 prevEl: '.pr',
@@ -67,8 +69,8 @@ function DescriptionBlock(props: TLamp): JSX.Element {
                                         ></div>
                                     </SwiperSlide>
                                 ))}
-                            <div className="pr">prev</div>
-                            <div className="ne">next</div>
+                            <div className="pr">&#8249;</div>
+                            <div className="ne">&#8250;</div>
                         </Swiper>
                     </div>
                 </div>

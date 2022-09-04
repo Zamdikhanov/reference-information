@@ -18,10 +18,8 @@ function LampDetailPage() {
             let responce = await entityApi.getEntity({ entity: 'lamps', options: options });
             setData(responce?.data[0]);
             setIsLoading(false);
-            console.log('data: get');
         })();
     }, []);
-    console.log('data: start', data);
 
     return (
         <DetailsLayout
