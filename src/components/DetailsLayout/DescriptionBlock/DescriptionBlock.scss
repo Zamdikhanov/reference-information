@@ -8,7 +8,7 @@
     top: 0;
     bottom: 0;
     width: 32px;
-    z-index: 10;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,6 +16,16 @@
     transition-property: color, background-color;
     transition-duration: 0.2s;
     transition-timing-function: ease-in;
+    @media (max-width: 479px) {
+        top: unset;
+        bottom: 4px;
+        height: 32px;
+        font-size: 48px;
+        border-radius: 50%;
+        padding-bottom: 7px;
+        background-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 2px 2px $color_gray_light;
+    }
     &:hover {
         background-color: $color_gray_light;
         color: $color_main_black;
@@ -24,8 +34,14 @@
 
 .pr {
     left: 0;
+    @media (max-width: 479px) {
+        left: 4px;
+    }
 }
 
 .ne {
     right: 0;
+    @media (max-width: 479px) {
+        right: 4px;
+    }
 }
