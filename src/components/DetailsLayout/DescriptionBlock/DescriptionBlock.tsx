@@ -48,7 +48,6 @@ function DescriptionBlock(props: TLamp): JSX.Element {
                     <div className={css.slider__container_big}>
                         <Swiper
                             modules={[FreeMode, Navigation, Thumbs]}
-                            loop={true}
                             spaceBetween={50}
                             effect="fade"
                             navigation={{

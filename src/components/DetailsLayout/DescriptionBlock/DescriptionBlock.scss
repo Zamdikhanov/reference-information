@@ -30,6 +30,9 @@
         background-color: $color_gray_light;
         color: $color_main_black;
     }
+    &.swiper-button-disabled {
+        display: none;
+    }
 }
 
 .pr {

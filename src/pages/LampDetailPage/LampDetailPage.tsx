@@ -6,12 +6,14 @@ import DetailsBlock, {
     TLampDetail,
 } from '../../components/DetailsLayout/DetailsBlock/DetailsBlock';
 import DetailsLayout from '../../components/DetailsLayout/DetailsLayout';
+import { TAccessory } from '../../components/ProductSlider/ProductSlider';
 import { TLamp } from '../LampsPage/constants';
 
 function LampDetailPage() {
     const { id } = useParams();
     let [data, setData] = useState<TLamp>({ id: '00', title: 'загрузка', series: 'null' });
     let [dataDetail, setDataDetail] = useState<TLampDetail>(null);
+    let [dataAccessories, setDataAccessories] = useState<TAccessory[]>();
     let [isLoading, setIsLoading] = useState(true);
 
     let options = `id=${id}`;
@@ -24,8 +26,13 @@ function LampDetailPage() {
                 entity: 'lampsdetail',
                 options: options,
             });
+            let responceAccessories = await entityApi.getEntity({
+                entity: 'accessories',
+                options: `id=AKC002`,
+            });
             setData(responce?.data[0]);
             setDataDetail(responceDetail?.data[0]);
+            setDataAccessories(responceAccessories?.data);
             setIsLoading(false);
         })();
     }, []);
@@ -41,9 +48,11 @@ function LampDetailPage() {
             ) : (
                 <>
                     <DescriptionBlock {...data} />
-                    {dataDetail ? <DetailsBlock {...dataDetail} /> : <></>}
-                    <br />
-                    <>Страница в разработке</>
+                    {dataDetail && dataAccessories ? (
+                        <DetailsBlock lampDetail={dataDetail} accessories={dataAccessories} />
+                    ) : (
+                        <></>
+                    )}
                 </>
             )}
         </DetailsLayout>

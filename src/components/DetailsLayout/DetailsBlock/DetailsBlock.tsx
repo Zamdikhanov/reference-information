@@ -1,4 +1,5 @@
 import React from 'react';
+import ProductSlider, { TAccessory } from '../../ProductSlider/ProductSlider';
 import css from './DetailsBlock.module.scss';
 
 export type TLampDetail = {
@@ -21,23 +22,28 @@ export type TLampDetail = {
     reviewlink: string;
 } | null;
 
-function DetailsBlock(props: TLampDetail): JSX.Element {
-    if (!props) return <>Нет данных</>;
-    const { description, composition, accessories } = props;
+type TDetailsBlockProps = {
+    lampDetail: TLampDetail;
+    accessories?: TAccessory[];
+};
+
+function DetailsBlock({ lampDetail, accessories }: TDetailsBlockProps): JSX.Element {
+    if (!lampDetail) return <>Нет данных</>;
+    const { description, composition } = lampDetail;
     return (
         <div className={css.container}>
-            <div className={css.article_bg}>
+            <section className={css.article_bg}>
                 <div className={css.article_block}>
                     <div className={css.article_block__title_block}>
-                        <h4 className={css.title}>Описание</h4>
+                        <h3 className={css.title}>Описание</h3>
                     </div>
                     <div className={css.article_block__content_block}>{description}</div>
                 </div>
-            </div>
-            <div className={css.article_bg}>
+            </section>
+            <section className={css.article_bg}>
                 <div className={css.article_block}>
                     <div className={css.article_block__title_block}>
-                        <h4 className={css.title}>Комплектация</h4>
+                        <h3 className={css.title}>Комплектация</h3>
                     </div>
                     <ul className={css.article_block__content_block}>
                         {composition?.map((item) => {
@@ -49,24 +55,21 @@ function DetailsBlock(props: TLampDetail): JSX.Element {
                         })}
                     </ul>
                 </div>
-            </div>
-            <div className={css.article_bg}>
+            </section>
+            <section className={css.article_bg}>
                 <div className={css.article_block}>
                     <div className={css.article_block__title_block}>
-                        <h4 className={css.title}>Дополнительные аксессуары</h4>
+                        <h3 className={css.title}>Дополнительные аксессуары</h3>
                     </div>
-                    <ul className={css.article_block__content_block}>
-                        {accessories?.map((item) => {
-                            return (
-                                <li key={item.id} className={css.list_item}>
-                                    {item.id} - <span className={css.bold}>{item.title}</span> -{' '}
-                                    {item.description}
-                                </li>
-                            );
-                        })}
-                    </ul>
+                    <div className={css.article_block__content_block}>
+                        {accessories ? (
+                            <ProductSlider products={accessories} chapterUrl="/accessories/" />
+                        ) : (
+                            <></>
+                        )}
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
     );
 }

@@ -1,0 +1,42 @@
+@import '../../styles/variables.scss';
+.description_block {
+    margin: 0 0 0 -32px;
+}
+
+.slide {
+    max-width: 300px;
+    .slide__container {
+        display: block;
+        text-decoration: none;
+        margin: 5px 8px 15px;
+        padding: 24px;
+        box-shadow: 0 1px 0px transparent;
+        transition: box-shadow ease-in 0.3s;
+        cursor: pointer;
+        &:hover {
+            box-shadow: 0 5px 10px $color_gray_dark;
+        }
+        &:hover .slide__title_block {
+            color: $color_main_choice;
+        }
+        .slide__description_block {
+            display: block;
+            min-height: 45px;
+            margin: 8px 0;
+            font-size: 16px;
+            color: $color_title_text;
+        }
+        .slide__designation_block {
+            display: block;
+            font-size: 14px;
+            color: $color_main_text;
+        }
+        .slide__title_block {
+            display: block;
+            min-height: 68px;
+            font-size: 24px;
+            color: $color_title_text;
+            transition: color ease-in 0.3s;
+        }
+    }
+}
