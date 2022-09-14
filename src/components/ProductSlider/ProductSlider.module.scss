@@ -3,6 +3,12 @@
     margin: 0 0 0 -32px;
 }
 
+.swiper {
+    & [class*='swiper-slide'] {
+        width: auto;
+    }
+}
+
 .slide {
     max-width: 300px;
     .slide__container {

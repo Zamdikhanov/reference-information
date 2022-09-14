@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper';
 import { TLamp } from '../../../pages/LampsPage/constants';
+import noImage from '../../../assets/images/no_image.svg';
 import 'swiper/scss';
 import 'swiper/scss/free-mode';
 import 'swiper/scss/navigation';
@@ -12,7 +13,8 @@ import css from './DescriptionBlock.module.scss';
 function DescriptionBlock(props: TLamp): JSX.Element {
     const { imgUrl, ip, climate, type, purpose, warranty, material, color, powerRange, lens } =
         props;
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    // const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const [hasError, setHasError] = useState(false);
     return (
         <div className={css.description_block}>
             <div className={css.slider}>
@@ -37,10 +39,12 @@ function DescriptionBlock(props: TLamp): JSX.Element {
                             {imgUrl &&
                                 imgUrl.map((slide) => (
                                     <SwiperSlide key={slide}>
-                                        <div
+                                        <img
                                             className={css.slide2}
-                                            style={{ backgroundImage: `url(${slide})` }}
-                                        ></div>
+                                            alt="lamp"
+                                            onError={() => setHasError(true)}
+                                            src={hasError ? noImage : slide}
+                                        />
                                     </SwiperSlide>
                                 ))}
                         </Swiper>
@@ -54,7 +58,7 @@ function DescriptionBlock(props: TLamp): JSX.Element {
                                 nextEl: '.ne',
                                 prevEl: '.pr',
                             }}
-                            thumbs={{ swiper: thumbsSwiper }}
+                            // thumbs={{ swiper: thumbsSwiper }}
                             slidesPerView={1}
                             speed={500}
                             className={css.swiper}
@@ -62,10 +66,11 @@ function DescriptionBlock(props: TLamp): JSX.Element {
                             {imgUrl &&
                                 imgUrl.map((slide) => (
                                     <SwiperSlide key={slide}>
-                                        <div
+                                        <img
                                             className={css.slide}
-                                            style={{ backgroundImage: `url(${slide})` }}
-                                        ></div>
+                                            src={hasError ? noImage : slide}
+                                            alt="lamp"
+                                        />
                                     </SwiperSlide>
                                 ))}
                             <div className="pr">&#8249;</div>

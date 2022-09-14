@@ -5,13 +5,9 @@ import './styles/reset.css';
 import './styles/index.scss';
 import App from './App';
 
-const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement,
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-    <React.StrictMode>
-        <HashRouter>
-            <App />
-        </HashRouter>
-    </React.StrictMode>,
+    <HashRouter>
+        <App />
+    </HashRouter>,
 );

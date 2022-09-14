@@ -13,7 +13,7 @@ function LampDetailPage() {
     const { id } = useParams();
     let [data, setData] = useState<TLamp>({ id: '00', title: 'загрузка', series: 'null' });
     let [dataDetail, setDataDetail] = useState<TLampDetail>(null);
-    let [dataAccessories, setDataAccessories] = useState<TAccessory[]>();
+    let [dataAccessories, setDataAccessories] = useState<TAccessory[]>([]);
     let [isLoading, setIsLoading] = useState(true);
 
     let options = `id=${id}`;
@@ -26,13 +26,17 @@ function LampDetailPage() {
                 entity: 'lampsdetail',
                 options: options,
             });
-            let responceAccessories = await entityApi.getEntity({
-                entity: 'accessories',
-                options: `id=AKC002`,
+            let arr: TAccessory[] = [];
+            await responceDetail?.data[0].accessories.forEach(async (element: TLampDetail) => {
+                let responceAccessories = await entityApi.getEntity({
+                    entity: 'accessories',
+                    options: 'id=' + element?.id,
+                });
+                arr.push(responceAccessories?.data[0]);
+                setDataAccessories((prevState) => [...prevState, responceAccessories?.data[0]]);
             });
             setData(responce?.data[0]);
             setDataDetail(responceDetail?.data[0]);
-            setDataAccessories(responceAccessories?.data);
             setIsLoading(false);
         })();
     }, []);

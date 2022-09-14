@@ -41,7 +41,10 @@ function ProductSlider({ products, chapterUrl }: TProductSliderProps): JSX.Eleme
                         <article className={css.slide}>
                             <Link to={chapterUrl + product.id} className={css.slide__container}>
                                 <div className={css.slide__image_block}>
-                                    <ImageHoverBlock imgUrl={product.imgUrl} />
+                                    <ImageHoverBlock
+                                        imgUrl={product.imgUrl}
+                                        link={chapterUrl + product.id}
+                                    />
                                 </div>
                                 <div className={css.slide__description_block}>
                                     {product.description[0]}
