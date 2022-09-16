@@ -27,10 +27,10 @@ function LampDetailPage() {
                 options: options,
             });
             let arr: TAccessory[] = [];
-            await responceDetail?.data[0].accessories.forEach(async (element: TLampDetail) => {
+            await responceDetail?.data[0].accessories.forEach(async (element: string) => {
                 let responceAccessories = await entityApi.getEntity({
                     entity: 'accessories',
-                    options: 'id=' + element?.id,
+                    options: 'id=' + element,
                 });
                 arr.push(responceAccessories?.data[0]);
                 setDataAccessories((prevState) => [...prevState, responceAccessories?.data[0]]);
