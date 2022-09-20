@@ -29,7 +29,11 @@ function ProductSlider({ products, chapterUrl }: TProductSliderProps): JSX.Eleme
             <Swiper
                 grabCursor
                 modules={[FreeMode, Navigation]}
-                spaceBetween={0}
+                navigation={{
+                    nextEl: '.next',
+                    prevEl: '.prev',
+                }}
+                spaceBetween={10}
                 slidesPerView={'auto'}
                 effect="slide"
                 watchSlidesProgress={true}
@@ -57,6 +61,8 @@ function ProductSlider({ products, chapterUrl }: TProductSliderProps): JSX.Eleme
                         </article>
                     </SwiperSlide>
                 ))}
+                <div className="prev">&#8249;</div>
+                <div className="next">&#8250;</div>
             </Swiper>
         </div>
     );

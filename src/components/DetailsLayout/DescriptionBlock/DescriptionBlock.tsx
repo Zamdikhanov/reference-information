@@ -55,8 +55,8 @@ function DescriptionBlock(props: TLamp): JSX.Element {
                             spaceBetween={50}
                             effect="fade"
                             navigation={{
-                                nextEl: '.ne',
-                                prevEl: '.pr',
+                                nextEl: '.next',
+                                prevEl: '.prev',
                             }}
                             // thumbs={{ swiper: thumbsSwiper }}
                             slidesPerView={1}
@@ -73,8 +73,8 @@ function DescriptionBlock(props: TLamp): JSX.Element {
                                         />
                                     </SwiperSlide>
                                 ))}
-                            <div className="pr">&#8249;</div>
-                            <div className="ne">&#8250;</div>
+                            <div className="prev">&#8249;</div>
+                            <div className="next">&#8250;</div>
                         </Swiper>
                     </div>
                 </div>

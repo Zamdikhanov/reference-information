@@ -1,6 +1,6 @@
 @import '../../../styles/variables.scss';
-.pr,
-.ne {
+.prev,
+.next {
     cursor: pointer;
     position: absolute;
     color: $color_gray_dark;
@@ -35,14 +35,14 @@
     }
 }
 
-.pr {
+.prev {
     left: 0;
     @media (max-width: 479px) {
         left: 4px;
     }
 }
 
-.ne {
+.next {
     right: 0;
     @media (max-width: 479px) {
         right: 4px;
