@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay } from 'swiper';
+import { Navigation, Autoplay, Pagination } from 'swiper';
 import { sliders } from './constants';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
@@ -15,11 +15,14 @@ function Slider() {
             <div className={css.slider_container}>
                 <div className={css.slider_container__content}>
                     <Swiper
-                        modules={[Autoplay, Navigation]}
+                        modules={[Autoplay, Pagination, Navigation]}
                         spaceBetween={0}
                         slidesPerView={1}
                         loop={true}
                         speed={500}
+                        pagination={{
+                            type: 'fraction',
+                        }}
                         navigation={{
                             prevEl: navigationPrevRef.current
                                 ? navigationPrevRef.current
@@ -34,6 +37,8 @@ function Slider() {
                             /* @ts-ignore */
                             swiper.params.navigation.nextEl = navigationNextRef.current;
                         }}
+                        onSlideChange={() => console.log('slide change')}
+                        onSwiper={(swiper) => console.log(swiper)}
                         grabCursor={true}
                         autoplay={{ delay: 5000 }}
                         className="swiper"
@@ -57,6 +62,7 @@ function Slider() {
                         <div ref={navigationNextRef} className={css.next_button}>
                             {String.fromCharCode(10095)}
                         </div>
+                        <div className={css.progressbar}></div>
                     </Swiper>
                 </div>
                 <div className={css.slider_container__information_block}>

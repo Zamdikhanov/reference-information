@@ -47,12 +47,19 @@
         &[class~='swiper-button-disabled'] {
             display: none;
         }
-    }
-    [class~='prev'] {
-        left: 6px;
-    }
-    [class~='next'] {
-        right: 6px;
+        @media (max-width: 767px) {
+            height: 60px;
+            width: 60px;
+            font-size: 60px;
+            line-height: 48px;
+            color: $color_main_choice;
+        }
+        [class~='prev'] {
+            left: 6px;
+        }
+        [class~='next'] {
+            right: 6px;
+        }
     }
 }
 

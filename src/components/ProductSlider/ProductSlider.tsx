@@ -5,7 +5,6 @@ import 'swiper/scss';
 import 'swiper/scss/free-mode';
 import 'swiper/scss/navigation';
 import 'swiper/scss/thumbs';
-import './ProductSlider.scss';
 import css from './ProductSlider.module.scss';
 import ImageHoverBlock from '../ImageHoverBlock/ImageHoverBlock';
 import { Link } from 'react-router-dom';

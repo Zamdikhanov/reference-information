@@ -21,7 +21,7 @@ function Footer() {
                 </ul>
                 <div className={css.text_block}>
                     <div className={css.copy}>© Zamdikhanov, 2022</div>
-                    <div className={css.text}>Мой обновленный первый проект</div>
+                    <div className={css.text}>Обновлённая версия моего первого проекта</div>
                 </div>
             </div>
         </footer>
