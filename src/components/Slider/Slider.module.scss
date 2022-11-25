@@ -70,6 +70,7 @@
     }
     .progressbar {
         position: absolute;
+        overflow: hidden;
         z-index: 1;
         bottom: 38px;
         right: 75px;
@@ -90,8 +91,12 @@
             height: 100%;
             width: 0%;
             background-color: $color_main_accent;
-            transition: width linear 5000s;
+            transition: none;
         }
+    }
+    .progressbar_active.progressbar::before {
+        width: 100%;
+        transition: width linear 4500ms;
     }
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, Pagination } from 'swiper';
 import { sliders } from './constants';
@@ -8,8 +8,15 @@ import 'swiper/scss/pagination';
 import css from './Slider.module.scss';
 
 function Slider() {
+    const [isProgressbarActive, setIsProgressbarActive] = useState(false);
     const navigationPrevRef = React.useRef<HTMLDivElement>(null);
     const navigationNextRef = React.useRef<HTMLDivElement>(null);
+    function changeProgressbarStyle(): void {
+        setIsProgressbarActive(false);
+        setTimeout(() => {
+            setIsProgressbarActive(true);
+        }, 100);
+    }
     return (
         <div className={css.wrap}>
             <div className={css.slider_container}>
@@ -24,12 +31,8 @@ function Slider() {
                             type: 'fraction',
                         }}
                         navigation={{
-                            prevEl: navigationPrevRef.current
-                                ? navigationPrevRef.current
-                                : undefined,
-                            nextEl: navigationNextRef.current
-                                ? navigationNextRef.current
-                                : undefined,
+                            prevEl: navigationPrevRef.current ? navigationPrevRef.current : null,
+                            nextEl: navigationNextRef.current ? navigationNextRef.current : null,
                         }}
                         onBeforeInit={(swiper) => {
                             /* @ts-ignore */
@@ -37,8 +40,7 @@ function Slider() {
                             /* @ts-ignore */
                             swiper.params.navigation.nextEl = navigationNextRef.current;
                         }}
-                        onSlideChange={() => console.log('slide change')}
-                        onSwiper={(swiper) => console.log(swiper)}
+                        onSlideChange={() => changeProgressbarStyle()}
                         grabCursor={true}
                         autoplay={{ delay: 5000 }}
                         className="swiper"
@@ -62,7 +64,13 @@ function Slider() {
                         <div ref={navigationNextRef} className={css.next_button}>
                             {String.fromCharCode(10095)}
                         </div>
-                        <div className={css.progressbar}></div>
+                        <div
+                            className={
+                                isProgressbarActive
+                                    ? `${css.progressbar} ${css.progressbar_active}`
+                                    : css.progressbar
+                            }
+                        ></div>
                     </Swiper>
                 </div>
                 <div className={css.slider_container__information_block}>

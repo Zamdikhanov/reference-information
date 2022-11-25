@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReactComponent as LogoGithubSVG } from '../../assets/images/github_logo_icon.svg';
 import { ReactComponent as LogoVkSVG } from '../../assets/images/vk_logo_icon.svg';
+import { ReactComponent as LogoTelegramSVG } from '../../assets/images/telegramm_logo_icon.svg';
 import css from './Footer.module.scss';
 
 function Footer() {
@@ -16,6 +17,11 @@ function Footer() {
                     <li className={css.links_list__item}>
                         <a href="https://vk.com/zamdikhanov" target="_blank" rel="noreferrer">
                             <LogoVkSVG className={css.logo} />
+                        </a>
+                    </li>
+                    <li className={css.links_list__item}>
+                        <a href="https://t.me/zamdikhanov" target="_blank" rel="noreferrer">
+                            <LogoTelegramSVG className={css.logo} />
                         </a>
                     </li>
                 </ul>
