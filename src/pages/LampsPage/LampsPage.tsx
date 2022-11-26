@@ -1,10 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import entityApi from '../../api/api';
-import Filters from '../../components/Filters/Filters';
+import Filters, { TFilter } from '../../components/Filters/Filters';
 import LampCard from '../../components/LampCard/LampCard';
 import ProductLayout from '../../components/ProductLayout/ProductLayout';
 import { TLamp } from './constants';
+
+const filters: TFilter[] = [
+    {
+        id: '01',
+        type: 'radio',
+        title: 'Серия светильников',
+        searchparams: 'series',
+        data: ['Все', 'FG', 'FL', 'FT'],
+    },
+    {
+        id: '02',
+        type: 'radio',
+        title: 'Степень защиты',
+        searchparams: 'ip',
+        data: ['Все', 'IP20', 'IP40', 'IP54', 'IP65'],
+    },
+];
 
 function LampsPage() {
     let [lamps, setLamps] = useState([]);
@@ -40,7 +57,7 @@ function LampsPage() {
             title="Светильники"
             count={filteredArrayCard?.length || 0}
             mainContent={filteredArrayCard}
-            filters={<Filters />}
+            filters={<Filters filters={filters} />}
             isLoading={isLoading}
         />
     );

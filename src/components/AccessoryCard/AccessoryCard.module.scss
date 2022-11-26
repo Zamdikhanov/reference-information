@@ -1,0 +1,48 @@
+@import '../../styles/variables.scss';
+.accessory_card {
+    display: block;
+    margin: 0;
+    padding: 24px;
+    box-shadow: 0 1px 0px transparent;
+    transition: box-shadow ease-in 0.2s;
+    &:hover {
+        box-shadow: 0 3px 12px $color_gray_dark;
+        @media (max-width: 1023px) {
+            box-shadow: none;
+        }
+    }
+    &:hover .accessory_card__title_block {
+        color: $color_main_choice;
+    }
+    .accessory_card__description_block {
+        display: block;
+        min-height: 68px;
+        margin: 8px 0;
+        font-size: 16px;
+        color: $color_title_text;
+        @media (max-width: 1023px) {
+            font-size: 14px;
+            min-height: 40px;
+        }
+    }
+    .accessory_card__designation_block {
+        display: block;
+        font-size: 14px;
+        color: $color_main_text;
+    }
+    .accessory_card__link {
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .accessory_card__title_block {
+        display: block;
+        min-height: 68px;
+        font-size: 24px;
+        color: $color_title_text;
+        transition: color ease-in 0.3s;
+        @media (max-width: 1023px) {
+            font-size: 20px;
+            min-height: 60px;
+        }
+    }
+}

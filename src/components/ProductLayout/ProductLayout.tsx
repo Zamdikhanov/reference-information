@@ -9,6 +9,7 @@ type TProductLayoutProps = {
     mainContent: any[];
     filters?: any;
     isLoading?: boolean;
+    containerType?: 'grid' | undefined;
 };
 
 const ProductLayout: FC<TProductLayoutProps> = ({
@@ -17,6 +18,7 @@ const ProductLayout: FC<TProductLayoutProps> = ({
     mainContent,
     filters,
     isLoading,
+    containerType,
 }) => {
     return (
         <main>
@@ -34,7 +36,11 @@ const ProductLayout: FC<TProductLayoutProps> = ({
                             {isLoading ? (
                                 <Loader />
                             ) : mainContent.length ? (
-                                mainContent
+                                containerType ? (
+                                    <div className={css.items_grid}>{mainContent}</div>
+                                ) : (
+                                    mainContent
+                                )
                             ) : (
                                 'Ничего не найдено'
                             )}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { filters } from './constants';
 import css from './Filters.module.scss';
 
 export type TFilter = {
@@ -11,7 +10,9 @@ export type TFilter = {
     data: string[];
 };
 
-function Filters() {
+type TFiltersProps = { filters: TFilter[] };
+
+function Filters({ filters }: TFiltersProps) {
     return (
         <div className={css.container}>
             <h3 className={css.title}>Фильтры</h3>

@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
+import AccessoriesPage from './pages/AccessoriesPage/AccessoriesPage';
 import LampDetailPage from './pages/LampDetailPage/LampDetailPage';
 import LampsPage from './pages/LampsPage/LampsPage';
 import MainPage from './pages/MainPage/MainPage';
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/" element={<MainPage />} />
                 <Route path="/lamps/" element={<LampsPage />} />
                 <Route path="/lamps/:id" element={<LampDetailPage />} />
+                <Route path="/accessories/" element={<AccessoriesPage />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
 

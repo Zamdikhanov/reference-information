@@ -74,7 +74,7 @@
         transition: box-shadow ease-in 0.2s;
         cursor: pointer;
         &:hover {
-            box-shadow: 0 5px 10px $color_gray_dark;
+            box-shadow: 0 3px 12px $color_gray_dark;
             @media (max-width: 1023px) {
                 box-shadow: none;
             }
@@ -84,7 +84,7 @@
         }
         .slide__description_block {
             display: block;
-            min-height: 45px;
+            min-height: 68px;
             margin: 8px 0;
             font-size: 16px;
             color: $color_title_text;
