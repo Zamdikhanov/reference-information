@@ -10,17 +10,32 @@ function Footer() {
             <div className={css.container}>
                 <ul className={css.links_list}>
                     <li className={css.links_list__item}>
-                        <a href="https://github.com/Zamdikhanov" target="_blank" rel="noreferrer">
+                        <a
+                            className={css.links_list__link}
+                            href="https://github.com/Zamdikhanov"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             <LogoGithubSVG className={css.logo} />
                         </a>
                     </li>
                     <li className={css.links_list__item}>
-                        <a href="https://vk.com/zamdikhanov" target="_blank" rel="noreferrer">
+                        <a
+                            className={css.links_list__link}
+                            href="https://vk.com/zamdikhanov"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             <LogoVkSVG className={css.logo} />
                         </a>
                     </li>
                     <li className={css.links_list__item}>
-                        <a href="https://t.me/zamdikhanov" target="_blank" rel="noreferrer">
+                        <a
+                            className={css.links_list__link}
+                            href="https://t.me/zamdikhanov"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             <LogoTelegramSVG className={css.logo} />
                         </a>
                     </li>

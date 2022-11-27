@@ -3,7 +3,7 @@
 .footer {
     margin: auto 0 0;
     background: linear-gradient(to bottom, #e5e5e5 0%, $color_gray_light 50%);
-    padding: 8px 0 32px;
+    padding: 16px 0 32px;
 }
 
 .container {
@@ -25,6 +25,14 @@
     &__item {
         margin: 0 8px;
     }
+}
+
+.links_list__link {
+    display: block;
+    font-size: 1px;
+    line-height: 1;
+    margin: 0;
+    text-decoration: none;
 }
 
 .logo {
