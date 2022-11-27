@@ -18,7 +18,7 @@
 
 .container_color {
     @media (max-width: 1023px) {
-        background-color: $color_gray_light;
+        background: linear-gradient(to bottom, #e5e5e5 0%, $color_gray_light 50%);
     }
 }
 
