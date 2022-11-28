@@ -1,5 +1,9 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
+.main {
+    overflow-x: hidden;
+}
+
 .wrap {
     @include mainWrapMedia;
 }

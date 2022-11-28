@@ -10,6 +10,9 @@ const Breadcrumbs: FC = () => {
     };
 
     const tabNames: TtabNames = {
+        favorites: {
+            name: 'Избранное',
+        },
         lamps: {
             name: 'Светильники',
         },

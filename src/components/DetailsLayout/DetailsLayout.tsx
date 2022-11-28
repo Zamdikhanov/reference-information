@@ -12,7 +12,7 @@ type TDetailsLayoutProps = {
 
 const DetailsLayout: FC<TDetailsLayoutProps> = ({ title, designation, children, isLoading }) => {
     return (
-        <main>
+        <main className={css.main}>
             <div className={css.wrap}>
                 <div className={`${css.container} ${css.container_color}`}>
                     <div className={css.header_container}>

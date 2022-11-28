@@ -20,7 +20,7 @@ function ImageHoverBlock({ link = '/', imgUrl = [noImage] }: TProps) {
         <Link to={link} className={css.container}>
             <div className={css.image_block}>
                 <div className={css.image_block__inner}>
-                    {imgUrl.map((img) => (
+                    {imgUrl.map((img, index) => (
                         <>
                             <img
                                 className={
@@ -28,7 +28,7 @@ function ImageHoverBlock({ link = '/', imgUrl = [noImage] }: TProps) {
                                         ? `${css.image_block__image} ${css.image_block__image_active}`
                                         : css.image_block__image
                                 }
-                                key={img}
+                                key={index}
                                 onError={() => setHasError(true)}
                                 src={hasError ? noImage : img}
                                 alt="lamp"
@@ -44,14 +44,14 @@ function ImageHoverBlock({ link = '/', imgUrl = [noImage] }: TProps) {
                 </div>
             </div>
             <div className={css.image_dots}>
-                {imgUrl.map((img) => (
+                {imgUrl.map((img, index) => (
                     <div
                         className={
                             currentImageUrl === img
                                 ? `${css.image_dots__dot} ${css.image_dots__dot_active}`
                                 : css.image_dots__dot
                         }
-                        key={img}
+                        key={index}
                     ></div>
                 ))}
             </div>

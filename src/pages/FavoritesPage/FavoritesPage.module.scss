@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+.favorites_empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    .title {
+        font-family: $font_title;
+        color: $color_title_text;
+        font-size: 24px;
+    }
+    .img {
+        object-fit: contain;
+        border-radius: 10px;
+        margin-bottom: 24px;
+    }
+}

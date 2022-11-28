@@ -17,8 +17,8 @@ function Header() {
                     </Link>
                     <ul className={css.links_list}>
                         <li className={css.links_list__item}>
-                            <Link className={css.link} to="/">
-                                Ссылка
+                            <Link className={css.link} to="/favorites">
+                                Избранное
                             </Link>
                         </li>
                         <li className={css.links_list__item}>
