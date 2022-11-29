@@ -38,16 +38,18 @@
     font-family: $font_title;
     color: $color_title_text;
     font-weight: 700;
-    font-size: 24px;
-    margin: 16px 0.5em 16px 0;
+    font-size: 32px;
+    margin: 16px 0.5em 32px 0;
     @media (max-width: 1279px) {
-        margin: 16px 0.5em 16px 0;
+        font-size: 24px;
+        margin: 16px 0.5em 24px 0;
     }
     @media (max-width: 1023px) {
-        font-size: 20px;
-        margin: 12px 0px;
+        display: block;
+        margin: 16px 0px;
     }
     @media (max-width: 767px) {
+        font-size: 20px;
         margin: 8px 0px;
     }
 }

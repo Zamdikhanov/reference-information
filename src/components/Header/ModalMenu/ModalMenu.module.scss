@@ -1,0 +1,104 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+.overlay {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.modal {
+    z-index: 100;
+    background-color: #fff;
+    width: 320px;
+    min-height: 100vh;
+    outline: none;
+    padding: 16px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+[class~='ReactModal__Overlay'] {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+}
+
+[class~='ReactModal__Overlay--after-open'] {
+    opacity: 1;
+}
+
+[class~='ReactModal__Overlay--before-close'] {
+    opacity: 0;
+}
+
+.logo_container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin-bottom: 16px;
+    @media (max-width: 1024px) {
+        flex: 1 0 auto;
+        justify-content: center;
+    }
+    &__logo {
+        fill: $color_main_accent;
+        height: 60px;
+        width: 80px;
+        margin-right: 8px;
+    }
+    &__text_block {
+        display: flex;
+        flex-direction: column;
+    }
+    .title {
+        font-family: $font_title;
+        font-weight: 700;
+        color: $color_main_accent;
+        font-size: 16px;
+        line-height: 25px;
+        display: block;
+        text-transform: uppercase;
+    }
+    .subtitle {
+        font-family: $font_title;
+        font-weight: 700;
+        color: $color_main_accent;
+        font-size: 11px;
+        line-height: 18px;
+        display: block;
+        text-transform: uppercase;
+    }
+}
+
+.modal__content__title {
+    display: block;
+    font-family: $font_title;
+    font-weight: 400;
+    color: $color_main_black;
+    font-size: 24px;
+    margin-bottom: 8px;
+    padding: 0 0 0 32px;
+}
+
+.list_item {
+    margin-bottom: 8px;
+    &__link {
+        width: 100%;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 20px;
+        line-height: 32px;
+        transition: color ease-in-out 0.3s;
+        &:hover {
+            color: $color_main_accent;
+        }
+    }
+}

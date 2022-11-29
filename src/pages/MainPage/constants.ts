@@ -4,12 +4,13 @@ import imgUrlLedDriver from '../../assets/images/category_led_driver.png';
 import imgUrlLedBoard from '../../assets/images/category_led_board.png';
 
 export type TCategory = {
-    title: string,
-        imgUrl: string,
-        linkUrl: string,
-}
+    title: string;
+    imgUrl: string;
+    linkUrl: string;
+};
 
-export const categories: TCategory[] = [{
+export const categories: TCategory[] = [
+    {
         title: 'Светильники',
         imgUrl: imgUrlLamps,
         linkUrl: '/lamps',
@@ -25,7 +26,7 @@ export const categories: TCategory[] = [{
         linkUrl: '/led-drivers',
     },
     {
-        title: 'Светодиодный модули',
+        title: 'Светодиодные модули',
         imgUrl: imgUrlLedBoard,
         linkUrl: '/led-board',
     },

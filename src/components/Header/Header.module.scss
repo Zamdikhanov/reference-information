@@ -24,6 +24,11 @@
     align-items: center;
     text-decoration: none;
     margin-right: 32px;
+    @media (max-width: 1024px) {
+        flex: 1 0 auto;
+        justify-content: center;
+        margin-right: 28px;
+    }
     &__logo {
         fill: $color_main_accent;
         height: 80px;
@@ -33,7 +38,7 @@
     &__text_block {
         display: flex;
         flex-direction: column;
-        @media (max-width: 767px) {
+        @media (max-width: 480px) {
             display: none;
         }
     }
@@ -61,6 +66,9 @@
 
 .links_list {
     display: flex;
+    @media (max-width: 1024px) {
+        display: none;
+    }
     &__item {
         margin-right: 32px;
         &:last-child {

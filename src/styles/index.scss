@@ -10,3 +10,7 @@
     line-height: 1.4;
     color: $color_main_text;
 }
+
+.ReactModal__Body--open #root {
+    overflow: hidden;
+}
