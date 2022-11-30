@@ -51,8 +51,12 @@ function ModalMenu({ isOpen = false, onClose = () => {} }) {
                 <ul>
                     {categories.map((item) => {
                         return (
-                            <li className={css.list_item} key={item.title} onClick={closeModal}>
-                                <Link className={css.list_item__link} to={item.linkUrl}>
+                            <li className={css.list_item} key={item.title}>
+                                <Link
+                                    className={css.list_item__link}
+                                    to={item.linkUrl}
+                                    onClick={closeModal}
+                                >
                                     {item.title}
                                 </Link>
                             </li>
