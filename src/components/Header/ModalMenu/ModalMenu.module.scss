@@ -78,7 +78,7 @@
     }
 }
 
-.modal__content__title {
+.modal__content_title {
     display: block;
     font-family: $font_title;
     font-weight: 400;
@@ -86,6 +86,10 @@
     font-size: 24px;
     margin-bottom: 8px;
     padding: 0 0 0 32px;
+}
+
+.list {
+    margin-bottom: 16px;
 }
 
 .list_item {
@@ -100,5 +104,17 @@
         &:hover {
             color: $color_main_accent;
         }
+    }
+}
+
+.social_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-evenly;
+    &__link {
+        text-decoration: none;
+        display: block;
+        line-height: 0;
     }
 }

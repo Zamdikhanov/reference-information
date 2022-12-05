@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import { ReactComponent as LogoSVG } from '../../../assets/images/rd_logo.svg';
 import { categories } from '../../../pages/MainPage/constants';
+import { socialArray } from '../../Footer/constants';
 import css from './ModalMenu.module.scss';
 
 const root = document.getElementById('root');
@@ -47,8 +48,8 @@ function ModalMenu({ isOpen = false, onClose = () => {} }) {
                 </Link>
             </div>
             <nav className={css.modal__content}>
-                <h3 className={css.modal__content__title}>Основные разделы</h3>
-                <ul>
+                <h3 className={css.modal__content_title}>Основные разделы</h3>
+                <ul className={css.list}>
                     {categories.map((item) => {
                         return (
                             <li className={css.list_item} key={item.title}>
@@ -63,8 +64,8 @@ function ModalMenu({ isOpen = false, onClose = () => {} }) {
                         );
                     })}
                 </ul>
-                <h3 className={css.modal__content__title}>Дополнительные</h3>
-                <ul>
+                <h3 className={css.modal__content_title}>Дополнительные</h3>
+                <ul className={css.list}>
                     <li className={css.list_item}>
                         <Link className={css.list_item__link} to="/favorites" onClick={closeModal}>
                             Избранное
@@ -81,6 +82,23 @@ function ModalMenu({ isOpen = false, onClose = () => {} }) {
                             Старая версия сайта
                         </a>
                     </li>
+                </ul>
+                <h3 className={css.modal__content_title}>Контакты</h3>
+                <ul className={css.social_list}>
+                    {socialArray.map((item) => {
+                        return (
+                            <li className={css.social_list__item} key={item.id}>
+                                <a
+                                    className={css.social_list__link}
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    {item.renderSvg()}
+                                </a>
+                            </li>
+                        );
+                    })}
                 </ul>
             </nav>
         </Modal>
