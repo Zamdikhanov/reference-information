@@ -5,11 +5,17 @@ import css from './Button.module.scss';
 type TButtonProps = {
     buttonType: 'link' | 'button';
     url?: string;
-
+    onHandleClick?: () => void;
     children: any;
 };
 
-const Button: FC<TButtonProps> = ({ buttonType, url, children, ...props }) => {
+const Button: FC<TButtonProps> = ({
+    buttonType,
+    url,
+    children,
+    onHandleClick = () => {},
+    ...props
+}) => {
     if (buttonType === 'link') {
         return (
             <Link className={css.button} to={url ? url : '/'} {...props}>
@@ -18,7 +24,14 @@ const Button: FC<TButtonProps> = ({ buttonType, url, children, ...props }) => {
         );
     }
     return (
-        <button className={css.button} type="button" {...props}>
+        <button
+            className={css.button}
+            type="button"
+            onClick={() => {
+                onHandleClick();
+            }}
+            {...props}
+        >
             {children}
         </button>
     );

@@ -6,8 +6,6 @@ import { categories } from '../../../pages/MainPage/constants';
 import { socialArray } from '../../Footer/constants';
 import css from './ModalMenu.module.scss';
 
-const root = document.getElementById('root');
-
 Modal.setAppElement('#modal');
 
 function ModalMenu({ isOpen = false, onClose = () => {} }) {
@@ -15,16 +13,9 @@ function ModalMenu({ isOpen = false, onClose = () => {} }) {
 
     useEffect(() => {
         setIsOpen((prev) => isOpen);
-        modalIsOpen && root?.classList.add('lock');
     }, [isOpen]);
 
-    function openModal() {
-        setIsOpen(true);
-        root?.classList.add('lock');
-    }
-
     function closeModal() {
-        root?.classList.remove('lock');
         setIsOpen(false);
         onClose();
     }

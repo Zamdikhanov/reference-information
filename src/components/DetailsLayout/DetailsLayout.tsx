@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import Loader from '../Loader/Loader';
 import css from './DetailsLayout.module.scss';
@@ -11,6 +11,9 @@ type TDetailsLayoutProps = {
 };
 
 const DetailsLayout: FC<TDetailsLayoutProps> = ({ title, designation, children, isLoading }) => {
+    useEffect(() => {
+        window.scrollBy(0, 0);
+    }, []);
     return (
         <main className={css.main}>
             <div className={css.wrap}>
