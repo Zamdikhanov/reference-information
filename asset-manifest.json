@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/reference-information/static/css/main.fe6178ca.css",
-    "main.js": "/reference-information/static/js/main.657a2476.js",
+    "main.css": "/reference-information/static/css/main.26347330.css",
+    "main.js": "/reference-information/static/js/main.6422fcdc.js",
     "static/media/Helvetica.ttf": "/reference-information/static/media/Helvetica.06113bf748ae7dc33e05.ttf",
     "static/media/Helvetica-Bold.ttf": "/reference-information/static/media/Helvetica-Bold.ed57aca7292971d8548c.ttf",
     "static/media/Roboto-Regular.ttf": "/reference-information/static/media/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf",
@@ -22,11 +22,12 @@
     "static/media/no_image.svg": "/reference-information/static/media/no_image.942109fe676ed7777b748f774871cce7.svg",
     "static/media/telegramm_logo_icon.svg": "/reference-information/static/media/telegramm_logo_icon.06441896d2394b58811d2651ce42b9ce.svg",
     "index.html": "/reference-information/index.html",
-    "main.fe6178ca.css.map": "/reference-information/static/css/main.fe6178ca.css.map",
-    "main.657a2476.js.map": "/reference-information/static/js/main.657a2476.js.map"
+    "static/media/heart.svg": "/reference-information/static/media/heart.c582b9d6d26af916ba006bf3b16ef99c.svg",
+    "main.26347330.css.map": "/reference-information/static/css/main.26347330.css.map",
+    "main.6422fcdc.js.map": "/reference-information/static/js/main.6422fcdc.js.map"
   },
   "entrypoints": [
-    "static/css/main.fe6178ca.css",
-    "static/js/main.657a2476.js"
+    "static/css/main.26347330.css",
+    "static/js/main.6422fcdc.js"
   ]
 }
