@@ -3,9 +3,15 @@ import { Link } from 'react-router-dom';
 import { TLamp } from '../../pages/LampsPage/constants';
 import Button from '../Button/Button';
 import ImageHoverBlock from '../ImageHoverBlock/ImageHoverBlock';
+import { ReactComponent as FavoriteSVG } from '../../assets/images/heart.svg';
 import css from './LampCard.module.scss';
 
-function LampCard(props: TLamp): JSX.Element {
+type TLampAdditional = {
+    isFavorite: boolean;
+    favoriteCallback: () => void;
+};
+
+function LampCard(props: TLamp & TLampAdditional): JSX.Element {
     const {
         id,
         title,
@@ -20,6 +26,8 @@ function LampCard(props: TLamp): JSX.Element {
         color,
         powerRange,
         lens,
+        isFavorite,
+        favoriteCallback = () => {},
     } = props;
     return (
         <div className={css.card}>
@@ -28,10 +36,24 @@ function LampCard(props: TLamp): JSX.Element {
             </div>
             <div className={css.content_block}>
                 <div className={css.header}>
-                    <Link to={id} className={css.title}>
-                        Светильник {title}
-                    </Link>
-                    <span className={css.designation}>Обозначение: {designation?.join(', ')}</span>
+                    <div className={css.header__block}>
+                        <Link to={id} className={css.title}>
+                            Светильник {title}
+                        </Link>
+                        <span className={css.designation}>
+                            Обозначение: {designation?.join(', ')}
+                        </span>
+                    </div>
+                    <button
+                        className={`${css.favorite__button} ${css.header__button}`}
+                        onClick={favoriteCallback}
+                    >
+                        <FavoriteSVG
+                            className={`${css.favorite__button_svg} ${
+                                isFavorite ? css.favorite__button_svg_active : ''
+                            }`}
+                        />
+                    </button>
                 </div>
                 <div className={css.description_block}>
                     <ul className={css.description__list}>

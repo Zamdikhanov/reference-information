@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+@import '../../styles/variables.scss';
 .card {
     display: flex;
     min-height: 200px;
@@ -63,14 +63,21 @@
 }
 
 .header {
+    display: flex;
     width: 100%;
     padding-bottom: 8px;
     margin-bottom: 8px;
     border-bottom: 1px solid $color_gray_light;
 }
 
+.header__block {
+    flex: 1 1 auto;
+    margin-right: 8px;
+}
+
 .title {
-    display: inline-block;
+    display: block;
+    width: fit-content;
     color: $color_title_text;
     font-family: $font_title;
     font-size: 18px;
@@ -81,6 +88,36 @@
     }
     @media (max-width: 767px) {
         font-size: 14px;
+    }
+}
+
+.header__button {
+    flex: 0 0 auto;
+}
+
+.favorite__button {
+    height: 32px;
+    width: 32px;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid;
+    border-color: $color_gray_dark;
+    background: transparent;
+    transition: border-color ease-in-out 0.9;
+    &:hover {
+        border-color: $color_main_choice;
+    }
+    &:active {
+        border-width: 2px;
+    }
+    .favorite__button_svg {
+        height: 100%;
+        width: 100%;
+        fill: $color_gray_dark;
+        &.favorite__button_svg_active {
+            fill: $color_main_choice;
+            stroke: $color_main_choice;
+        }
     }
 }
 

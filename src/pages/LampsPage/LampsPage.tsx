@@ -26,6 +26,7 @@ const filters: TFilter[] = [
 function LampsPage() {
     let [lamps, setLamps] = useState([]);
     let [isLoading, setIsLoading] = useState(true);
+    let [favoritesLamp, setFavoritesLamp] = useState<string[]>([]);
     const [searchParams] = useSearchParams();
 
     let options = `series=${searchParams.get('title') || ''}`;
@@ -39,6 +40,28 @@ function LampsPage() {
         })();
     }, [options]);
 
+    useEffect(() => {
+        setFavoritesLamp(JSON.parse(localStorage.getItem('favoritesLamp') || '[]'));
+    }, []);
+
+    const handleFavoriteClick = (id: string) => {
+        if (!favoritesLamp.includes(id)) {
+            setFavoritesLamp((prev) => {
+                localStorage.setItem('favoritesLamp', JSON.stringify([...prev, id]));
+                return [...prev, id];
+            });
+        } else {
+            let index = favoritesLamp.indexOf(id);
+            setFavoritesLamp((prev) => {
+                localStorage.setItem(
+                    'favoritesLamp',
+                    JSON.stringify([...prev.slice(0, index), ...prev.slice(index + 1)]),
+                );
+                return [...prev.slice(0, index), ...prev.slice(index + 1)];
+            });
+        }
+    };
+
     let filteredArrayCard = lamps
         .filter((lamp: TLamp) => {
             for (let [key, value] of searchParams.entries()) {
@@ -49,7 +72,14 @@ function LampsPage() {
             return true;
         })
         .map((lamp: TLamp) => {
-            return <LampCard key={lamp.id} {...lamp} />;
+            return (
+                <LampCard
+                    key={lamp.id}
+                    {...lamp}
+                    isFavorite={favoritesLamp.includes(lamp.id)}
+                    favoriteCallback={() => handleFavoriteClick(lamp.id)}
+                />
+            );
         });
 
     return (

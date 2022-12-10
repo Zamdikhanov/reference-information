@@ -1,5 +1,43 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
+.favorites {
+    .favorites__button_block {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 24px;
+    }
+    .favorites__table {
+        width: 100%;
+        .favorites__table_body {
+            display: table;
+            width: 100%;
+            .favorites__table_row {
+                display: table-row;
+                align-items: center;
+                min-height: 32px;
+                padding: 0 16px;
+                background-color: #fff;
+                transition: background-color 0.1s ease-in-out;
+                &:nth-child(2n-1) {
+                    background-color: $color_gray_light;
+                }
+                &:hover {
+                    color: #fff;
+                    background-color: $color_main_choice;
+                }
+                .favorites__table_header {
+                    color: $color_title_text;
+                    font: $font_title;
+                    background-color: $color_gray_dark;
+                }
+                .favorites__table_column {
+                    padding: 0 8px;
+                }
+            }
+        }
+    }
+}
+
 .favorites_empty {
     display: flex;
     justify-content: center;
