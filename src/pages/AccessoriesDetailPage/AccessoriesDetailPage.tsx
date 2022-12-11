@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import entityApi from '../../api/api';
+import ButtonFavorite from '../../components/ButtonFavorite/ButtonFavorite';
 import DetailsLayout from '../../components/DetailsLayout/DetailsLayout';
 import ImageHoverBlock from '../../components/ImageHoverBlock/ImageHoverBlock';
-import { TAccessory } from '../../components/ProductSlider/ProductSlider';
+import { TAccessory } from '../AccessoriesPage/constants';
 import css from './AccessoriesDetailPage.module.scss';
 
 function AccessoriesDetailPage() {
     const { id } = useParams();
     let [data, setData] = useState<TAccessory>();
     let [isLoading, setIsLoading] = useState(true);
+    const [isFavorite, setIsFavorite] = useState(false);
 
     let options = `id=${id}`;
 
@@ -21,6 +23,31 @@ function AccessoriesDetailPage() {
             setIsLoading(false);
         })();
     }, []);
+
+    useEffect(() => {
+        let accessoriesIdArray = JSON.parse(localStorage.getItem('favoritesAccessories') || '[]');
+        setIsFavorite(accessoriesIdArray.includes(id));
+    }, []);
+
+    const onFavoriteButtonClick = () => {
+        let accessoriesIdArray = JSON.parse(localStorage.getItem('favoritesAccessories') || '[]');
+        setIsFavorite((prev) => {
+            if (prev) {
+                localStorage.setItem(
+                    'favoritesAccessories',
+                    JSON.stringify([
+                        ...accessoriesIdArray.filter((lampId: string) => lampId !== id),
+                    ]),
+                );
+            } else {
+                localStorage.setItem(
+                    'favoritesAccessories',
+                    JSON.stringify([...accessoriesIdArray, id]),
+                );
+            }
+            return !prev;
+        });
+    };
 
     return (
         <DetailsLayout
@@ -46,6 +73,11 @@ function AccessoriesDetailPage() {
                         <div className={css.accessory_detail__description_block}>
                             {data.description && data.description[1]}
                         </div>
+                        <ButtonFavorite
+                            onHandleClick={onFavoriteButtonClick}
+                            isFavorite={isFavorite}
+                            size="big"
+                        />
                     </div>
                 </div>
             )}

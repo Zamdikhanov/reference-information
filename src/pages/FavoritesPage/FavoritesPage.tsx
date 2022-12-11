@@ -5,59 +5,90 @@ import css from './FavoritesPage.module.scss';
 import Button from '../../components/Button/Button';
 import entityApi from '../../api/api';
 import { TLamp } from '../LampsPage/constants';
+import TableFavorites from '../../components/TableFavorites/TableFavorites';
+import { TAccessory } from '../AccessoriesPage/constants';
 
 function FavoritesPage() {
-    let [favoritesLamp, setFavoritesLamp] = useState<string[]>([]);
-    let [isLoading, setIsLoading] = useState(true);
+    let [isLoading, setIsLoading] = useState(false);
     let [lamps, setLamps] = useState<TLamp[]>([]);
+    let [accessories, setAccessories] = useState<TAccessory[]>([]);
 
     useEffect(() => {
-        let lampsArray = JSON.parse(localStorage.getItem('favoritesLamp') || '[]');
-        setFavoritesLamp(lampsArray);
-        if (lampsArray.length > 0) {
+        let lampsIdArray = JSON.parse(localStorage.getItem('favoritesLamp') || '[]');
+        let accessoriesIdArray = JSON.parse(localStorage.getItem('favoritesAccessories') || '[]');
+        if (lampsIdArray.length > 0) {
             setIsLoading(true);
             (async function () {
                 let responce = await entityApi.getEntity({ entity: 'lamps' });
-                setLamps(responce?.data.filter((lamp: TLamp) => lampsArray.includes(lamp.id)));
-                setIsLoading(false);
+                setLamps(responce?.data.filter((lamp: TLamp) => lampsIdArray.includes(lamp.id)));
             })();
         }
+        if (accessoriesIdArray.length > 0) {
+            setIsLoading(true);
+            (async function () {
+                let responce = await entityApi.getEntity({ entity: 'accessories' });
+                setAccessories(
+                    responce?.data.filter((accessory: TAccessory) =>
+                        accessoriesIdArray.includes(accessory.id),
+                    ),
+                );
+            })();
+        }
+        setIsLoading(false);
     }, []);
 
     const clearClick = () => {
         localStorage.removeItem('favoritesLamp');
-        setFavoritesLamp([]);
+        localStorage.removeItem('favoritesAccessories');
+        setLamps([]);
+        setAccessories([]);
+    };
+
+    const deleteLamp = (id: string) => {
+        let lampsIdArray = JSON.parse(localStorage.getItem('favoritesLamp') || '[]');
+        localStorage.setItem(
+            'favoritesLamp',
+            JSON.stringify([...lampsIdArray.filter((lampId: string) => lampId !== id)]),
+        );
+        setLamps((prev) => prev.filter((lamp: TLamp) => lamp.id !== id));
+    };
+
+    const deleteAccessory = (id: string) => {
+        let accessoriesIdArray = JSON.parse(localStorage.getItem('favoritesAccessories') || '[]');
+        localStorage.setItem(
+            'favoritesAccessories',
+            JSON.stringify([
+                ...accessoriesIdArray.filter((accessoryId: string) => accessoryId !== id),
+            ]),
+        );
+        setAccessories((prev) => prev.filter((accessory: TAccessory) => accessory.id !== id));
     };
 
     return (
         <DetailsLayout title={`Избранное`} isLoading={isLoading}>
-            {favoritesLamp.length > 0 ? (
+            {lamps.length > 0 || accessories.length > 0 ? (
                 <div className={css.favorites}>
                     <div className={css.favorites__button_block}>
                         <Button buttonType="button" onHandleClick={clearClick}>
-                            Очистить список
+                            Очистить списки
                         </Button>
                     </div>
-                    <table className={css.favorites__table}>
-                        <tbody className={css.favorites__table_body}>
-                            <tr className={css.favorites__table_row}>
-                                <th className={css.favorites__table_header}>Наименование</th>
-                                <th className={css.favorites__table_header}>Обозначение</th>
-                            </tr>
-                            {lamps.map((lamp) => {
-                                return (
-                                    <tr className={css.favorites__table_row} key={lamp.id}>
-                                        <td className={css.favorites__table_column}>
-                                            {lamp.title}
-                                        </td>
-                                        <td className={css.favorites__table_column}>
-                                            {lamp.designation?.join(', ')}
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
+                    {lamps.length > 0 && (
+                        <TableFavorites
+                            title="Светильники"
+                            linkTo="/lamps/"
+                            data={lamps}
+                            onDeleteItem={deleteLamp}
+                        />
+                    )}
+                    {accessories.length > 0 && (
+                        <TableFavorites
+                            title="Аксессуары"
+                            linkTo="/accessories/"
+                            data={accessories}
+                            onDeleteItem={deleteAccessory}
+                        />
+                    )}
                 </div>
             ) : (
                 <div className={css.favorites_empty}>

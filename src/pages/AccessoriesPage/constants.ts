@@ -1,7 +1,7 @@
 export type TAccessory = {
     id: string;
     title: string;
-    [designation: string]: string[] | string;
+    designation: string[] | string;
     imgUrl: string[];
     description: string[];
 };

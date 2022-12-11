@@ -7,7 +7,7 @@ type TDetailsLayoutProps = {
     title: string;
     children: any;
     isLoading?: boolean;
-    designation?: string[];
+    designation?: string[] | string;
 };
 
 const DetailsLayout: FC<TDetailsLayoutProps> = ({ title, designation, children, isLoading }) => {
@@ -22,7 +22,14 @@ const DetailsLayout: FC<TDetailsLayoutProps> = ({ title, designation, children, 
                         <Breadcrumbs />
                         <h2 className={css.title}>{title}</h2>
                         <span className={css.header_container__text}>
-                            {designation && <>Обозначение: {designation.join(', ')}</>}
+                            {designation && (
+                                <>
+                                    Обозначение:{' '}
+                                    {Array.isArray(designation)
+                                        ? designation.join(', ')
+                                        : designation}
+                                </>
+                            )}
                         </span>
                     </div>
                 </div>

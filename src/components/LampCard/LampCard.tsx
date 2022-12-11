@@ -5,6 +5,7 @@ import Button from '../Button/Button';
 import ImageHoverBlock from '../ImageHoverBlock/ImageHoverBlock';
 import { ReactComponent as FavoriteSVG } from '../../assets/images/heart.svg';
 import css from './LampCard.module.scss';
+import ButtonFavorite from '../ButtonFavorite/ButtonFavorite';
 
 type TLampAdditional = {
     isFavorite: boolean;
@@ -44,16 +45,7 @@ function LampCard(props: TLamp & TLampAdditional): JSX.Element {
                             Обозначение: {designation?.join(', ')}
                         </span>
                     </div>
-                    <button
-                        className={`${css.favorite__button} ${css.header__button}`}
-                        onClick={favoriteCallback}
-                    >
-                        <FavoriteSVG
-                            className={`${css.favorite__button_svg} ${
-                                isFavorite ? css.favorite__button_svg_active : ''
-                            }`}
-                        />
-                    </button>
+                    <ButtonFavorite isFavorite={isFavorite} onHandleClick={favoriteCallback} />
                 </div>
                 <div className={css.description_block}>
                     <ul className={css.description__list}>

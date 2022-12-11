@@ -91,36 +91,6 @@
     }
 }
 
-.header__button {
-    flex: 0 0 auto;
-}
-
-.favorite__button {
-    height: 32px;
-    width: 32px;
-    padding: 6px;
-    border-radius: 6px;
-    border: 1px solid;
-    border-color: $color_gray_dark;
-    background: transparent;
-    transition: border-color ease-in-out 0.9;
-    &:hover {
-        border-color: $color_main_choice;
-    }
-    &:active {
-        border-width: 2px;
-    }
-    .favorite__button_svg {
-        height: 100%;
-        width: 100%;
-        fill: $color_gray_dark;
-        &.favorite__button_svg_active {
-            fill: $color_main_choice;
-            stroke: $color_main_choice;
-        }
-    }
-}
-
 .designation {
     display: block;
     color: $color_main_text;

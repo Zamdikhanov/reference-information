@@ -5,17 +5,10 @@ import 'swiper/scss';
 import 'swiper/scss/free-mode';
 import 'swiper/scss/navigation';
 import 'swiper/scss/thumbs';
-import css from './ProductSlider.module.scss';
 import ImageHoverBlock from '../ImageHoverBlock/ImageHoverBlock';
 import { Link } from 'react-router-dom';
-
-export type TAccessory = {
-    id: string;
-    title: string;
-    designation: string[];
-    imgUrl: string[];
-    description: string[];
-};
+import { TAccessory } from '../../pages/AccessoriesPage/constants';
+import css from './ProductSlider.module.scss';
 
 type TProductSliderProps = {
     products: TAccessory[];

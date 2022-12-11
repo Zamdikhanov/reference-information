@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper';
 import { TLamp } from '../../../pages/LampsPage/constants';
@@ -9,12 +9,35 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/thumbs';
 import './DescriptionBlock.scss';
 import css from './DescriptionBlock.module.scss';
+import ButtonFavorite from '../../ButtonFavorite/ButtonFavorite';
 
 function DescriptionBlock(props: TLamp): JSX.Element {
-    const { imgUrl, ip, climate, type, purpose, warranty, material, color, powerRange, lens } =
+    const { id, imgUrl, ip, climate, type, purpose, warranty, material, color, powerRange, lens } =
         props;
     // const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [hasError, setHasError] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    useEffect(() => {
+        let lampsIdArray = JSON.parse(localStorage.getItem('favoritesLamp') || '[]');
+        setIsFavorite(lampsIdArray.includes(id));
+    }, []);
+
+    const onFavoriteButtonClick = () => {
+        let lampsIdArray = JSON.parse(localStorage.getItem('favoritesLamp') || '[]');
+        setIsFavorite((prev) => {
+            if (prev) {
+                localStorage.setItem(
+                    'favoritesLamp',
+                    JSON.stringify([...lampsIdArray.filter((lampId: string) => lampId !== id)]),
+                );
+            } else {
+                localStorage.setItem('favoritesLamp', JSON.stringify([...lampsIdArray, id]));
+            }
+            return !prev;
+        });
+    };
+
     return (
         <div className={css.description_block}>
             <div className={css.slider}>
@@ -109,6 +132,13 @@ function DescriptionBlock(props: TLamp): JSX.Element {
                 </li>
                 <li className={css.description__list_item}>
                     Рассеиватели/линзы: <span>{lens?.join(', ')}</span>
+                </li>
+                <li>
+                    <ButtonFavorite
+                        onHandleClick={onFavoriteButtonClick}
+                        isFavorite={isFavorite}
+                        size="big"
+                    />
                 </li>
             </ul>
         </div>

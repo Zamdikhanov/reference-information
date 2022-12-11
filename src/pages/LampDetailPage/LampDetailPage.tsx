@@ -6,7 +6,7 @@ import DetailsBlock, {
     TLampDetail,
 } from '../../components/DetailsLayout/DetailsBlock/DetailsBlock';
 import DetailsLayout from '../../components/DetailsLayout/DetailsLayout';
-import { TAccessory } from '../../components/ProductSlider/ProductSlider';
+import { TAccessory } from '../AccessoriesPage/constants';
 import { TLamp } from '../LampsPage/constants';
 
 function LampDetailPage() {
@@ -15,6 +15,7 @@ function LampDetailPage() {
     let [dataDetail, setDataDetail] = useState<TLampDetail>(null);
     let [dataAccessories, setDataAccessories] = useState<TAccessory[]>([]);
     let [isLoading, setIsLoading] = useState(true);
+    const [isFavorite, setIsFavorite] = useState(false);
 
     let options = `id=${id}`;
 
@@ -40,6 +41,31 @@ function LampDetailPage() {
             setIsLoading(false);
         })();
     }, []);
+
+    useEffect(() => {
+        let accessoriesIdArray = JSON.parse(localStorage.getItem('favoritesAccessories') || '[]');
+        setIsFavorite(accessoriesIdArray.includes(id));
+    }, []);
+
+    const onFavoriteButtonClick = () => {
+        let accessoriesIdArray = JSON.parse(localStorage.getItem('favoritesAccessories') || '[]');
+        setIsFavorite((prev) => {
+            if (prev) {
+                localStorage.setItem(
+                    'favoritesAccessories',
+                    JSON.stringify([
+                        ...accessoriesIdArray.filter((accessoryId: string) => accessoryId !== id),
+                    ]),
+                );
+            } else {
+                localStorage.setItem(
+                    'favoritesAccessories',
+                    JSON.stringify([...accessoriesIdArray, id]),
+                );
+            }
+            return !prev;
+        });
+    };
 
     return (
         <DetailsLayout

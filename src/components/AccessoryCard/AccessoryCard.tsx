@@ -1,13 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { TAccessory } from '../../pages/AccessoriesPage/constants';
+import ButtonFavorite from '../ButtonFavorite/ButtonFavorite';
 import ImageHoverBlock from '../ImageHoverBlock/ImageHoverBlock';
 import css from './AccessoryCard.module.scss';
 
-function AccessoryCard(props: TAccessory): JSX.Element {
-    const { id, title, designation, imgUrl, description } = props;
+type TAccessoryAdditional = {
+    isFavorite?: boolean;
+    favoriteCallback?: () => void;
+};
+
+function AccessoryCard(props: TAccessoryAdditional & TAccessory): JSX.Element {
+    const {
+        id,
+        title,
+        designation,
+        imgUrl,
+        description,
+        isFavorite = false,
+        favoriteCallback = () => {},
+    } = props;
     return (
         <div className={css.accessory_card}>
+            <div className={css.button_container}>
+                <ButtonFavorite isFavorite={isFavorite} onHandleClick={favoriteCallback} />
+            </div>
+
             <div className={css.accessory_card__image_block}>
                 <ImageHoverBlock imgUrl={imgUrl} link={'/accessories/' + id} />
             </div>

@@ -1,5 +1,6 @@
 import React from 'react';
-import ProductSlider, { TAccessory } from '../../ProductSlider/ProductSlider';
+import { TAccessory } from '../../../pages/AccessoriesPage/constants';
+import ProductSlider from '../../ProductSlider/ProductSlider';
 import css from './DetailsBlock.module.scss';
 
 export type TLampDetail = {
