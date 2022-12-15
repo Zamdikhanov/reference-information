@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
-import css from './MainPage.module.scss';
 import { categories } from './constants';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
 import Slider from '../../components/Slider/Slider';
+import zamdikhanovCanvas from './zamdikhanov-canvas';
+import css from './MainPage.module.scss';
 
 function MainPage() {
     useEffect(() => {
         window.scrollTo(0, 0);
+        zamdikhanovCanvas();
     }, []);
 
     return (
@@ -39,15 +41,22 @@ function MainPage() {
                         использованием React. Также теперь данные подгружаются по запросу с сервера.
                     </p>
                     <p className={css.news__text}>
-                        Цель: развитие и совершенствование навыков WEB разработки.
+                        Цель: развитие и совершенствование навыков WEB разработки. В частности
+                        работа с React, Typescript, экспериментирую с canvas (можно покликать на
+                        баннер ниже, это пока не конечная его версия).
                     </p>
+                </div>
+                <div id="zamdikhanov_container" className={css.zamdikhanov_container}>
+                    <canvas id="zamdikhanov" className={css.zamdikhanov_canvas}>
+                        banner zamdikhanov
+                    </canvas>
                 </div>
                 <div className={css.news_container}>
                     <h2 className={css.title}>Обновления</h2>
                     <p className={css.news__text}>
                         В планах: создать страницы со списком карточек для всех сущностей. Добавить
-                        возможности фильтрации по всем параметрам. Добавить страницы подробной
-                        информации о каждом элементе.
+                        возможности фильтрации по всем параметрам. Сделать баннер более
+                        интерактивным.
                     </p>
                     <p className={css.news__text}>
                         Реализовано: создана главная страница и страница ошибки 404.
@@ -62,6 +71,10 @@ function MainPage() {
                     <p className={css.news__text}>
                         Реализовано: Добавлена страница аксессуаров и подробной информации о
                         аксессуарах.
+                    </p>
+                    <p className={css.news__text}>
+                        Реализовано: Добавлена страница "избранное" и возможность добавлять и
+                        удалять сущности.
                     </p>
                 </div>
             </div>
