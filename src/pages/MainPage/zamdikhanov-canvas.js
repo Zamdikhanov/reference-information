@@ -6,11 +6,6 @@ export default function zamdikhanovCanvas() {
 
     ctx.lineJoin = 'round';
 
-
-    var canvas2 = document.createElement('canvas')
-    var ctx2 = canvas2.getContext('2d');
-    canvas2.width = w;
-    canvas2.height = h;
     var canvas3 = document.createElement('canvas')
     var ctx3 = canvas3.getContext('2d');
     canvas3.width = w;
@@ -415,7 +410,7 @@ export default function zamdikhanovCanvas() {
                 (dotsLetter) => {
                     let width = 1000;
                     let height = 161;
-                    let widthPercent = 0.8;
+                    let widthPercent = 0.99;
                     let kX = (w * widthPercent) / width;
                     let deltaXCanvas = (w - w * widthPercent) / 2;
                     let deltaYCanvas = (h - height * kX) / 2;
@@ -444,7 +439,7 @@ export default function zamdikhanovCanvas() {
         let period = 3000 / 6;
         let angle = Math.PI * (timeStamp + period / countWave + period * 0.5) / (period * 2);
         let radiusK = Math.sin(angle);
-        let R = 99 + Math.abs(radiusK) * 51;
+        let R = (w / 10 * 2 / 3) + Math.abs(radiusK) * (w / 10 * 1 / 3);
 
         function isInside(dx, dy, R) {
             if (dx > R) return false;
@@ -480,7 +475,7 @@ export default function zamdikhanovCanvas() {
 
 
     function dotsArrayDraw(arr) {
-        let widthPercent = 0.8;
+        let widthPercent = 0.99;
         let kX = (w * widthPercent) / 1000;
         let arrLength = arr.length;
         for (let i = 0; i < arrLength; i++) {
@@ -510,28 +505,6 @@ export default function zamdikhanovCanvas() {
             }
         }
     }
-    dotsArrayDraw(movingDots);
-
-    function bgDraw() {
-        let sizeRect = 5;
-        let periodRect = sizeRect * 2;
-        let color1 = [255, 80, 0];
-        let color2 = [252, 171, 44];
-        let resultColor = [];
-        let hCount = h / periodRect;
-        let wCount = w / periodRect;
-        for (let i = 0; i < wCount; i++) {
-            resultColor[0] = Math.round(color1[0] + (color2[0] - color1[0]) * i / wCount);
-            resultColor[1] = Math.round(color1[1] + (color2[1] - color1[1]) * i / wCount);
-            resultColor[2] = Math.round(color1[2] + (color2[2] - color1[2]) * i / wCount);
-            for (let j = 0; j < hCount; j++) {
-                ctx2.lineWidth = 1;
-                ctx2.strokeStyle = `rgb(${resultColor[0]}, ${resultColor[1]}, ${resultColor[2]})`
-                ctx2.strokeRect(i * periodRect, j * periodRect, sizeRect, sizeRect)
-            }
-        }
-    }
-    bgDraw();
 
 
     function throttle(callee, timeout) {
@@ -564,7 +537,7 @@ export default function zamdikhanovCanvas() {
         for (let i = 0; i < countWave; i++) {
             let angle = Math.PI * (timeStamp + period * i / countWave) / (period * 2);
             let radiusK = (Math.tan(angle) > 0) ? Math.sin(angle) : Math.cos(angle);
-            let r = 1 + Math.abs(radiusK) * 79;
+            let r = 1 + Math.abs(radiusK) * (w / 20 - 1);
             ctx3.beginPath();
             ctx3.arc(mouse.x, mouse.y, r, 0, 2 * Math.PI, false)
             ctx3.lineWidth = 3;
@@ -579,7 +552,6 @@ export default function zamdikhanovCanvas() {
 
         ctx3.shadowColor = `transparent`;
     }
-    cursorWaveDraw();
 
     let shootArr = [];
     let isShoot = false;
@@ -613,28 +585,26 @@ export default function zamdikhanovCanvas() {
     function render(timeStamp) {
         ctx.clearRect(0, 0, w, h);
 
-        ctx.drawImage(canvas2, 0, 0, w, h);
         ctx.drawImage(canvas3, 0, 0, w, h);
-
         cursorWaveDraw(timeStamp);
         shoot(timeStamp);
         mouseChangeDotsCoord(movingDots, timeStamp);
         dotsArrayDraw(movingDots);
 
-
         idRequestAnimationFrame = window.requestAnimationFrame(render);
     }
-    render();
+
+    ctx.drawImage(canvas3, 0, 0, w, h);
+    dotsArrayDraw(movingDots);
+    cursorWaveDraw(0);
 
     const updateCanvasSize = throttle(() => {
         w = canvas.width = document.getElementById('zamdikhanov_container').clientWidth;
         h = canvas.height = document.getElementById('zamdikhanov_container').clientHeight;
-        canvas2.width = w;
-        canvas2.height = h;
         canvas3.width = w;
         canvas3.height = h;
         movingDots = recalculateCoord(dotsArray);
-        bgDraw();
+        render();
     }, 100);
 
     window.addEventListener('resize', updateCanvasSize);

@@ -46,10 +46,12 @@ function MainPage() {
                         баннер ниже, это пока не конечная его версия).
                     </p>
                 </div>
-                <div id="zamdikhanov_container" className={css.zamdikhanov_container}>
-                    <canvas id="zamdikhanov" className={css.zamdikhanov_canvas}>
-                        banner zamdikhanov
-                    </canvas>
+                <div className={css.news_container}>
+                    <div id="zamdikhanov_container" className={css.zamdikhanov_container}>
+                        <canvas id="zamdikhanov" className={css.zamdikhanov_canvas}>
+                            banner zamdikhanov
+                        </canvas>
+                    </div>
                 </div>
                 <div className={css.news_container}>
                     <h2 className={css.title}>Обновления</h2>
