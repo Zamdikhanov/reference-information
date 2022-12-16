@@ -1,12 +1,20 @@
 export default function zamdikhanovCanvas() {
-    let canvas = document.getElementById('zamdikhanov');
-    let ctx = canvas.getContext('2d');
-    let w = canvas.width = document.getElementById('zamdikhanov_container').clientWidth;
-    let h = canvas.height = document.getElementById('zamdikhanov_container').clientHeight;
+    let canvas = document.getElementById('zamdikhanov') as HTMLCanvasElement;
+    let container = document.getElementById('zamdikhanov_container') as HTMLElement;
+
+    let ctx: CanvasRenderingContext2D;
+    let w: number;
+    let h: number;
+
+    if (!canvas || !container) return;
+
+    ctx = canvas.getContext('2d')!;
+    w = canvas.width = container.clientWidth;
+    h = canvas.height = container.clientHeight;
 
     ctx.lineJoin = 'round';
 
-    var canvas3 = document.createElement('canvas')
+    var canvas3 = document.createElement('canvas');
     var ctx3 = canvas3.getContext('2d');
     canvas3.width = w;
     canvas3.height = h;
@@ -34,7 +42,7 @@ export default function zamdikhanovCanvas() {
             [38, 46],
             [47, 23],
             [2, 23],
-            [2, 0]
+            [2, 0],
         ],
         [
             //a
@@ -58,7 +66,7 @@ export default function zamdikhanovCanvas() {
             [97, 69],
             [101, 46],
             [105, 23],
-            [108, 0]
+            [108, 0],
         ],
         [
             //a
@@ -276,7 +284,7 @@ export default function zamdikhanovCanvas() {
             [647, 69],
             [651, 46],
             [655, 23],
-            [658, 0]
+            [658, 0],
         ],
         [
             //a
@@ -289,7 +297,7 @@ export default function zamdikhanovCanvas() {
             [665, 92],
             [668, 69],
             [671, 46],
-            [674, 23]
+            [674, 23],
         ],
         [
             //n
@@ -399,82 +407,87 @@ export default function zamdikhanovCanvas() {
             [924, 46],
             [920, 23],
             [917, 0],
-        ]
-    ]
+        ],
+    ];
 
-    let movingDots = recalculateCoord(dotsArray);
+    type TmovingDot = {
+        originalX: number;
+        originalY: number;
+        offsetX: number;
+        offsetY: number;
+    };
 
-    function recalculateCoord(dotsArray) {
-        return (
-            dotsArray.map(
-                (dotsLetter) => {
-                    let width = 1000;
-                    let height = 161;
-                    let widthPercent = 0.99;
-                    let kX = (w * widthPercent) / width;
-                    let deltaXCanvas = (w - w * widthPercent) / 2;
-                    let deltaYCanvas = (h - height * kX) / 2;
-                    return dotsLetter.map(
-                        (dotArr) => {
-                            return { originalX: dotArr[0] * kX + deltaXCanvas, originalY: dotArr[1] * kX + deltaYCanvas, offsetX: 0, offsetY: 0 }
-                        }
-                    )
-                }
-            ))
+    let movingDots: TmovingDot[][] = recalculateCoord(dotsArray);
+
+    function recalculateCoord(dotsArray: number[][][]) {
+        return dotsArray.map((dotsLetter) => {
+            let width = 1000;
+            let height = 161;
+            let widthPercent = 0.99;
+            let kX = (w * widthPercent) / width;
+            let deltaXCanvas = (w - w * widthPercent) / 2;
+            let deltaYCanvas = (h - height * kX) / 2;
+            return dotsLetter.map((dotArr) => {
+                return {
+                    originalX: dotArr[0] * kX + deltaXCanvas,
+                    originalY: dotArr[1] * kX + deltaYCanvas,
+                    offsetX: 0,
+                    offsetY: 0,
+                };
+            });
+        });
     }
 
     let mouse = { x: w / 2, y: h / 2 };
 
-    function setPos(e) {
+    function setPos(e: MouseEvent) {
         let { offsetX, offsetY } = e;
         mouse.x = offsetX;
         mouse.y = offsetY;
     }
 
+    function isInsideCircle(dx: number, dy: number, R: number) {
+        if (dx > R) return false;
+        if (dy > R) return false;
+        if (dx + dy <= R) return true;
+        if (dx * dx + dy * dy <= R * R) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    function mouseChangeDotsCoord(movingDots, timeStamp = 0) {
-
+    function mouseChangeDotsCoord(incomingDotsArr: TmovingDot[][], timeStamp = 0) {
         let maxChangePx = 20;
         let countWave = 3;
         let period = 3000 / 6;
-        let angle = Math.PI * (timeStamp + period / countWave + period * 0.5) / (period * 2);
+        let angle = (Math.PI * (timeStamp + period / countWave + period * 0.5)) / (period * 2);
         let radiusK = Math.sin(angle);
-        let R = (w / 10 * 2 / 3) + Math.abs(radiusK) * (w / 10 * 1 / 3);
+        let R = ((w / 10) * 2) / 3 + Math.abs(radiusK) * (((w / 10) * 1) / 3);
 
-        function isInside(dx, dy, R) {
-            if (dx > R) return false;
-            if (dy > R) return false;
-            if (dx + dy <= R) return true;
-            if (dx * dx + dy * dy <= R * R) {
-                return true
-            } else {
-                return false
-            }
-        }
-
-        movingDots.map(
-            (dotsLetter) => {
-                return dotsLetter.forEach(
-                    (dotObj) => {
-                        let dx = Math.abs(dotObj.originalX - mouse.x);
-                        let dy = Math.abs(dotObj.originalY - mouse.y);
-                        if (isInside(dx, dy, R)) {
-                            let gyp = (dx * dx + dy * dy) ** 0.5;
-                            dotObj.offsetX = (dotObj.originalX - mouse.x) > 0 ? (dx * (R - gyp) / gyp) / R * maxChangePx : -(dx * (R - gyp) / gyp) / R * maxChangePx;
-                            dotObj.offsetY = (dotObj.originalY - mouse.y) > 0 ? (dy * (R - gyp) / gyp) / R * maxChangePx : -(dy * (R - gyp) / gyp) / R * maxChangePx;
-
-                        } else {
-                            dotObj.offsetX = 0;
-                            dotObj.offsetY = 0;
-                        }
-                    }
-                )
-            }
-        )
+        incomingDotsArr.map((dotsLetter) => {
+            return dotsLetter.forEach((dotObj) => {
+                let dx = Math.abs(dotObj.originalX - mouse.x);
+                let dy = Math.abs(dotObj.originalY - mouse.y);
+                if (isInsideCircle(dx, dy, R)) {
+                    let gyp = (dx * dx + dy * dy) ** 0.5;
+                    dotObj.offsetX =
+                        dotObj.originalX - mouse.x > 0
+                            ? ((dx * (R - gyp)) / gyp / R) ** 0.5 * maxChangePx
+                            : -(((dx * (R - gyp)) / gyp / R) ** 0.5) * maxChangePx;
+                    dotObj.offsetY =
+                        dotObj.originalY - mouse.y > 0
+                            ? ((dy * (R - gyp)) / gyp / R) ** 0.5 * maxChangePx
+                            : -(((dy * (R - gyp)) / gyp / R) ** 0.5) * maxChangePx;
+                } else {
+                    dotObj.offsetX = 0;
+                    dotObj.offsetY = 0;
+                }
+            });
+        });
     }
 
-
-    function dotsArrayDraw(arr) {
+    function dotsArrayDraw(arr: TmovingDot[][]) {
         let widthPercent = 0.99;
         let kX = (w * widthPercent) / 1000;
         let arrLength = arr.length;
@@ -482,12 +495,18 @@ export default function zamdikhanovCanvas() {
             let symbolArr = arr[i];
             let arrSymbolLength = symbolArr.length;
             ctx.lineWidth = Math.ceil(1 * kX);
-            ctx.strokeStyle = "rgba(55,55,55,1)";
+            ctx.strokeStyle = 'rgba(55,55,55,1)';
             ctx.fillStyle = 'transparent';
             ctx.beginPath();
-            ctx.moveTo(symbolArr[0].originalX + symbolArr[0].offsetX, arr[0].originalY + symbolArr[0].offsetY);
+            ctx.moveTo(
+                symbolArr[0].originalX + symbolArr[0].offsetX,
+                symbolArr[0].originalY + symbolArr[0].offsetY,
+            );
             for (let j = 0; j < arrSymbolLength; j++) {
-                ctx.lineTo(symbolArr[j].originalX + symbolArr[j].offsetX, symbolArr[j].originalY + symbolArr[j].offsetY);
+                ctx.lineTo(
+                    symbolArr[j].originalX + symbolArr[j].offsetX,
+                    symbolArr[j].originalY + symbolArr[j].offsetY,
+                );
             }
             ctx.fill();
             ctx.stroke();
@@ -498,28 +517,38 @@ export default function zamdikhanovCanvas() {
             ctx.fillStyle = 'white';
             for (let j = 0; j < arrSymbolLength; j++) {
                 ctx.beginPath();
-                ctx.moveTo(symbolArr[j].originalX + symbolArr[j].offsetX, symbolArr[j].originalY + symbolArr[j].offsetY);
-                ctx.arc(symbolArr[j].originalX + symbolArr[j].offsetX, symbolArr[j].originalY + symbolArr[j].offsetY, Math.ceil(2 * kX), 0, 2 * Math.PI, false);
+                ctx.moveTo(
+                    symbolArr[j].originalX + symbolArr[j].offsetX,
+                    symbolArr[j].originalY + symbolArr[j].offsetY,
+                );
+                ctx.arc(
+                    symbolArr[j].originalX + symbolArr[j].offsetX,
+                    symbolArr[j].originalY + symbolArr[j].offsetY,
+                    Math.ceil(2 * kX),
+                    0,
+                    2 * Math.PI,
+                    false,
+                );
                 ctx.stroke();
                 ctx.fill();
             }
         }
     }
 
-
-    function throttle(callee, timeout) {
-        let timer = null;
-        return function perform(...args) {
+    function throttle(callee: () => any, timeout: number) {
+        let timer: number | ReturnType<typeof setTimeout> = 0;
+        return function perform(...args: []) {
             if (timer) return;
             timer = setTimeout(() => {
-                callee(...args)
-                clearTimeout(timer)
-                timer = null
+                callee(...args);
+                clearTimeout(timer);
+                timer = 0;
             }, timeout);
-        }
+        };
     }
 
-    function cursorWaveDraw(timeStamp) {
+    function cursorWaveDraw(timeStamp: number) {
+        if (!ctx3) return;
         let countWave = 3;
         let period = 3000;
 
@@ -527,25 +556,25 @@ export default function zamdikhanovCanvas() {
         ctx3.clearRect(0, 0, w, h);
 
         ctx3.beginPath();
-        ctx3.arc(mouse.x, mouse.y, 2, 0, 2 * Math.PI, false)
+        ctx3.arc(mouse.x, mouse.y, 2, 0, 2 * Math.PI, false);
         ctx3.lineWidth = 2;
         ctx3.strokeStyle = `rgba(255, 80, 0, 1)`;
-        ctx3.shadowColor = `none`;;
+        ctx3.shadowColor = `none`;
         ctx3.fillStyle = 'transparent';
         ctx3.stroke();
 
         for (let i = 0; i < countWave; i++) {
-            let angle = Math.PI * (timeStamp + period * i / countWave) / (period * 2);
-            let radiusK = (Math.tan(angle) > 0) ? Math.sin(angle) : Math.cos(angle);
+            let angle = (Math.PI * (timeStamp + (period * i) / countWave)) / (period * 2);
+            let radiusK = Math.tan(angle) > 0 ? Math.sin(angle) : Math.cos(angle);
             let r = 1 + Math.abs(radiusK) * (w / 20 - 1);
             ctx3.beginPath();
-            ctx3.arc(mouse.x, mouse.y, r, 0, 2 * Math.PI, false)
+            ctx3.arc(mouse.x, mouse.y, r, 0, 2 * Math.PI, false);
             ctx3.lineWidth = 3;
             ctx3.strokeStyle = `rgba(255, 80, 0, ${1 - Math.abs(radiusK)})`;
             ctx3.shadowOffsetX = 0;
             ctx3.shadowOffsetY = 0;
             ctx3.shadowBlur = 20;
-            ctx3.shadowColor = `rgba(0, 0, 255, ${1 - Math.abs(radiusK)})`;;
+            ctx3.shadowColor = `rgba(0, 0, 255, ${1 - Math.abs(radiusK)})`;
             ctx3.fillStyle = 'transparent';
             ctx3.stroke();
         }
@@ -553,10 +582,18 @@ export default function zamdikhanovCanvas() {
         ctx3.shadowColor = `transparent`;
     }
 
-    let shootArr = [];
+    type Tshoot = {
+        x: number;
+        y: number;
+        shootTime: number;
+        word: string;
+    };
+
+    let shootArr: Tshoot[] = [];
     let isShoot = false;
 
-    function shoot(timeStamp) {
+    function shoot(timeStamp: number) {
+        if (!ctx3) return;
         let period = 1000;
         let word1 = 'паф';
         let word2 = 'тра-та-та';
@@ -571,18 +608,18 @@ export default function zamdikhanovCanvas() {
         for (let i = 0; i < shootArr.length; i++) {
             let deltaTime = timeStamp - shootArr[i].shootTime;
             if (shootArr[i].word === word3) deltaTime = (timeStamp - shootArr[i].shootTime) / 3;
-            ctx3.fillStyle = `rgba(255, 80, 0, ${1 - deltaTime/period})`;
-            ctx3.font = `${h/10 + Math.round(3*h/10 * deltaTime/period)}px Arial`;
-            ctx3.textAlign = "center";
-            ctx3.textBaseline = "middle";
+            ctx3.fillStyle = `rgba(255, 80, 0, ${1 - deltaTime / period})`;
+            ctx3.font = `${h / 10 + Math.round((((3 * h) / 10) * deltaTime) / period)}px Arial`;
+            ctx3.textAlign = 'center';
+            ctx3.textBaseline = 'middle';
             ctx3.fillText(shootArr[i].word, shootArr[i].x, shootArr[i].y);
             if (deltaTime > period) shootArr.shift();
         }
     }
 
-    let idRequestAnimationFrame;
+    let idRequestAnimationFrame: number;
 
-    function render(timeStamp) {
+    function render(timeStamp: number = 0) {
         ctx.clearRect(0, 0, w, h);
 
         ctx.drawImage(canvas3, 0, 0, w, h);
@@ -599,8 +636,8 @@ export default function zamdikhanovCanvas() {
     cursorWaveDraw(0);
 
     const updateCanvasSize = throttle(() => {
-        w = canvas.width = document.getElementById('zamdikhanov_container').clientWidth;
-        h = canvas.height = document.getElementById('zamdikhanov_container').clientHeight;
+        w = canvas.width = container.clientWidth;
+        h = canvas.height = container.clientHeight;
         canvas3.width = w;
         canvas3.height = h;
         movingDots = recalculateCoord(dotsArray);
@@ -609,9 +646,11 @@ export default function zamdikhanovCanvas() {
 
     window.addEventListener('resize', updateCanvasSize);
     canvas.addEventListener(`mousemove`, setPos);
-    canvas.addEventListener(`mouseover`, render);
-    canvas.addEventListener(`click`, () => { isShoot = true });
-    canvas.addEventListener(`mouseout`, () => { window.cancelAnimationFrame(idRequestAnimationFrame) });
-
-
-};
+    canvas.addEventListener(`mouseover`, () => render());
+    canvas.addEventListener(`click`, () => {
+        isShoot = true;
+    });
+    canvas.addEventListener(`mouseout`, () => {
+        window.cancelAnimationFrame(idRequestAnimationFrame);
+    });
+}
