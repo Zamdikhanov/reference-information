@@ -15,7 +15,6 @@ export default function zamdikhanovCanvas() {
     var ctx3 = canvas3.getContext('2d');
     canvas3.width = w;
     canvas3.height = h;
-    console.log(canvas3.getContext('2d'))
 
     let dotsArray = [
         [
@@ -408,7 +407,28 @@ export default function zamdikhanovCanvas() {
         ]
     ]
 
-    let mouse = { x: 5, y: 5 };
+    let movingDots = recalculateCoord(dotsArray);
+
+    function recalculateCoord(dotsArray) {
+        return (
+            dotsArray.map(
+                (dotsLetter) => {
+                    let width = 1000;
+                    let height = 161;
+                    let widthPercent = 0.8;
+                    let kX = (w * widthPercent) / width;
+                    let deltaXCanvas = (w - w * widthPercent) / 2;
+                    let deltaYCanvas = (h - height * kX) / 2;
+                    return dotsLetter.map(
+                        (dotArr) => {
+                            return { originalX: dotArr[0] * kX + deltaXCanvas, originalY: dotArr[1] * kX + deltaYCanvas, offsetX: 0, offsetY: 0 }
+                        }
+                    )
+                }
+            ))
+    }
+
+    let mouse = { x: w / 2, y: h / 2 };
 
     function setPos(e) {
         let { offsetX, offsetY } = e;
@@ -416,11 +436,52 @@ export default function zamdikhanovCanvas() {
         mouse.y = offsetY;
     }
 
-    function dotsArrayDraw(arr, width, height) {
+
+    function mouseChangeDotsCoord(movingDots, timeStamp = 0) {
+
+        let maxChangePx = 20;
+        let countWave = 3;
+        let period = 3000 / 6;
+        let angle = Math.PI * (timeStamp + period / countWave + period * 0.5) / (period * 2);
+        let radiusK = Math.sin(angle);
+        let R = 99 + Math.abs(radiusK) * 51;
+
+        function isInside(dx, dy, R) {
+            if (dx > R) return false;
+            if (dy > R) return false;
+            if (dx + dy <= R) return true;
+            if (dx * dx + dy * dy <= R * R) {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        movingDots.map(
+            (dotsLetter) => {
+                return dotsLetter.forEach(
+                    (dotObj) => {
+                        let dx = Math.abs(dotObj.originalX - mouse.x);
+                        let dy = Math.abs(dotObj.originalY - mouse.y);
+                        if (isInside(dx, dy, R)) {
+                            let gyp = (dx * dx + dy * dy) ** 0.5;
+                            dotObj.offsetX = (dotObj.originalX - mouse.x) > 0 ? (dx * (R - gyp) / gyp) / R * maxChangePx : -(dx * (R - gyp) / gyp) / R * maxChangePx;
+                            dotObj.offsetY = (dotObj.originalY - mouse.y) > 0 ? (dy * (R - gyp) / gyp) / R * maxChangePx : -(dy * (R - gyp) / gyp) / R * maxChangePx;
+
+                        } else {
+                            dotObj.offsetX = 0;
+                            dotObj.offsetY = 0;
+                        }
+                    }
+                )
+            }
+        )
+    }
+
+
+    function dotsArrayDraw(arr) {
         let widthPercent = 0.8;
-        let kX = (w * widthPercent) / width;
-        let deltaX = (w - width * kX) / 2;
-        let deltaY = (h - height * kX) / 2;
+        let kX = (w * widthPercent) / 1000;
         let arrLength = arr.length;
         for (let i = 0; i < arrLength; i++) {
             let symbolArr = arr[i];
@@ -429,9 +490,9 @@ export default function zamdikhanovCanvas() {
             ctx.strokeStyle = "rgba(55,55,55,1)";
             ctx.fillStyle = 'transparent';
             ctx.beginPath();
-            ctx.moveTo(symbolArr[0][0] * kX + deltaX, arr[0][1] * kX + deltaY);
+            ctx.moveTo(symbolArr[0].originalX + symbolArr[0].offsetX, arr[0].originalY + symbolArr[0].offsetY);
             for (let j = 0; j < arrSymbolLength; j++) {
-                ctx.lineTo(symbolArr[j][0] * kX + deltaX, symbolArr[j][1] * kX + deltaY);
+                ctx.lineTo(symbolArr[j].originalX + symbolArr[j].offsetX, symbolArr[j].originalY + symbolArr[j].offsetY);
             }
             ctx.fill();
             ctx.stroke();
@@ -442,14 +503,14 @@ export default function zamdikhanovCanvas() {
             ctx.fillStyle = 'white';
             for (let j = 0; j < arrSymbolLength; j++) {
                 ctx.beginPath();
-                ctx.moveTo(symbolArr[j][0] * kX + deltaX, symbolArr[j][1] * kX + deltaY);
-                ctx.arc(symbolArr[j][0] * kX + deltaX, symbolArr[j][1] * kX + deltaY, Math.ceil(2 * kX), 0, 2 * Math.PI, false);
+                ctx.moveTo(symbolArr[j].originalX + symbolArr[j].offsetX, symbolArr[j].originalY + symbolArr[j].offsetY);
+                ctx.arc(symbolArr[j].originalX + symbolArr[j].offsetX, symbolArr[j].originalY + symbolArr[j].offsetY, Math.ceil(2 * kX), 0, 2 * Math.PI, false);
                 ctx.stroke();
                 ctx.fill();
             }
         }
     }
-    dotsArrayDraw(dotsArray, 100, 161);
+    dotsArrayDraw(movingDots);
 
     function bgDraw() {
         let sizeRect = 5;
@@ -525,13 +586,13 @@ export default function zamdikhanovCanvas() {
 
     function shoot(timeStamp) {
         let period = 1000;
-        let word1 = 'ПАФ';
-        let word2 = 'ТРА-ТА-ТА';
-        let word3 = 'ВОЗЬМИ НА РАБОТУ';
+        let word1 = 'паф';
+        let word2 = 'тра-та-та';
+        let word3 = 'возьми на работу';
         if (isShoot) {
-            let word = word1;
-            if (shootArr.length > 3) word = word2;
-            if (shootArr.length > 5) word = word3;
+            let word = word1.toUpperCase();
+            if (shootArr.length > 3) word = word2.toUpperCase();
+            if (shootArr.length > 5) word = word3.toUpperCase();
             shootArr.push({ x: mouse.x, y: mouse.y, shootTime: timeStamp, word: word });
             isShoot = false;
         }
@@ -557,7 +618,8 @@ export default function zamdikhanovCanvas() {
 
         cursorWaveDraw(timeStamp);
         shoot(timeStamp);
-        dotsArrayDraw(dotsArray, 1000, 161);
+        mouseChangeDotsCoord(movingDots, timeStamp);
+        dotsArrayDraw(movingDots);
 
 
         idRequestAnimationFrame = window.requestAnimationFrame(render);
@@ -571,14 +633,13 @@ export default function zamdikhanovCanvas() {
         canvas2.height = h;
         canvas3.width = w;
         canvas3.height = h;
+        movingDots = recalculateCoord(dotsArray);
         bgDraw();
     }, 100);
 
     window.addEventListener('resize', updateCanvasSize);
     canvas.addEventListener(`mousemove`, setPos);
-    canvas.addEventListener(`mouseover`, (e) => {
-        render();
-    });
+    canvas.addEventListener(`mouseover`, render);
     canvas.addEventListener(`click`, () => { isShoot = true });
     canvas.addEventListener(`mouseout`, () => { window.cancelAnimationFrame(idRequestAnimationFrame) });
 
