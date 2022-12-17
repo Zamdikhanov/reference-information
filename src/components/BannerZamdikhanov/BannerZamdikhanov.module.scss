@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+.zamdikhanov_container {
+    width: 100%;
+    height: 0px;
+    padding-top: 25%;
+    position: relative;
+}
+
+.zamdikhanov_canvas {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+}

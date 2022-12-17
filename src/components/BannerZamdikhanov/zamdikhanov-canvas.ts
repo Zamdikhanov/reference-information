@@ -419,23 +419,27 @@ export default function zamdikhanovCanvas() {
 
     let movingDots: TmovingDot[][] = recalculateCoord(dotsArray);
 
-    function recalculateCoord(dotsArray: number[][][]) {
-        return dotsArray.map((dotsLetter) => {
-            let width = 1000;
-            let height = 161;
-            let widthPercent = 0.99;
-            let kX = (w * widthPercent) / width;
-            let deltaXCanvas = (w - w * widthPercent) / 2;
-            let deltaYCanvas = (h - height * kX) / 2;
-            return dotsLetter.map((dotArr) => {
-                return {
-                    originalX: dotArr[0] * kX + deltaXCanvas,
-                    originalY: dotArr[1] * kX + deltaYCanvas,
+    function recalculateCoord(dotsArray: number[][][]): TmovingDot[][] {
+        let resultArr: TmovingDot[][] = [];
+        let width = 1000;
+        let height = 161;
+        let widthPercent = 0.99;
+        let kX = (w * widthPercent) / width;
+        let deltaXCanvas = (w - w * widthPercent) / 2;
+        let deltaYCanvas = (h - height * kX) / 2;
+        for (let i = 0; i < dotsArray.length; i++) {
+            resultArr[i] = [];
+            for (let j = 0; j < dotsArray[i].length; j++) {
+                resultArr[i][j] = {
+                    originalX: dotsArray[i][j][0] * kX + deltaXCanvas,
+                    originalY: dotsArray[i][j][1] * kX + deltaYCanvas,
                     offsetX: 0,
                     offsetY: 0,
                 };
-            });
-        });
+            }
+        }
+        console.log(resultArr);
+        return resultArr;
     }
 
     let mouse = { x: w / 2, y: h / 2 };
@@ -458,33 +462,33 @@ export default function zamdikhanovCanvas() {
     }
 
     function mouseChangeDotsCoord(incomingDotsArr: TmovingDot[][], timeStamp = 0) {
-        let maxChangePx = 20;
+        let maxChangePx = w / 75;
         let countWave = 3;
         let period = 3000 / 6;
         let angle = (Math.PI * (timeStamp + period / countWave + period * 0.5)) / (period * 2);
         let radiusK = Math.sin(angle);
         let R = ((w / 10) * 2) / 3 + Math.abs(radiusK) * (((w / 10) * 1) / 3);
 
-        incomingDotsArr.map((dotsLetter) => {
-            return dotsLetter.forEach((dotObj) => {
-                let dx = Math.abs(dotObj.originalX - mouse.x);
-                let dy = Math.abs(dotObj.originalY - mouse.y);
+        for (let k = 0; k < incomingDotsArr.length; k++) {
+            for (let i = 0; i < incomingDotsArr[k].length; i++) {
+                let dx = Math.abs(incomingDotsArr[k][i].originalX - mouse.x);
+                let dy = Math.abs(incomingDotsArr[k][i].originalY - mouse.y);
                 if (isInsideCircle(dx, dy, R)) {
                     let gyp = (dx * dx + dy * dy) ** 0.5;
-                    dotObj.offsetX =
-                        dotObj.originalX - mouse.x > 0
-                            ? ((dx * (R - gyp)) / gyp / R) ** 0.5 * maxChangePx
-                            : -(((dx * (R - gyp)) / gyp / R) ** 0.5) * maxChangePx;
-                    dotObj.offsetY =
-                        dotObj.originalY - mouse.y > 0
-                            ? ((dy * (R - gyp)) / gyp / R) ** 0.5 * maxChangePx
-                            : -(((dy * (R - gyp)) / gyp / R) ** 0.5) * maxChangePx;
+                    incomingDotsArr[k][i].offsetX =
+                        Math.sign(incomingDotsArr[k][i].originalX - mouse.x) *
+                        ((dx * (R - gyp)) / gyp / R) ** 0.5 *
+                        maxChangePx;
+                    incomingDotsArr[k][i].offsetY =
+                        Math.sign(incomingDotsArr[k][i].originalY - mouse.y) *
+                        ((dy * (R - gyp)) / gyp / R) ** 0.5 *
+                        maxChangePx;
                 } else {
-                    dotObj.offsetX = 0;
-                    dotObj.offsetY = 0;
+                    incomingDotsArr[k][i].offsetX = 0;
+                    incomingDotsArr[k][i].offsetY = 0;
                 }
-            });
-        });
+            }
+        }
     }
 
     function dotsArrayDraw(arr: TmovingDot[][]) {
