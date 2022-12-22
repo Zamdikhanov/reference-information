@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import AccessoriesDetailPage from './pages/AccessoriesDetailPage/AccessoriesDetailPage';
@@ -8,6 +9,7 @@ import LampDetailPage from './pages/LampDetailPage/LampDetailPage';
 import LampsPage from './pages/LampsPage/LampsPage';
 import MainPage from './pages/MainPage/MainPage';
 import NotFound from './pages/NotFound/NotFound';
+import 'react-toastify/dist/ReactToastify.css';
 import css from './styles/App.module.scss';
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
             </Routes>
 
             <Footer />
+
+            <ToastContainer />
         </div>
     );
 }

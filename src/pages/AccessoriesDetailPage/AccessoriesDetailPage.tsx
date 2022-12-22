@@ -74,9 +74,10 @@ function AccessoriesDetailPage() {
                             {data.description && data.description[1]}
                         </div>
                         <ButtonFavorite
-                            onHandleClick={onFavoriteButtonClick}
+                            onClick={onFavoriteButtonClick}
                             isFavorite={isFavorite}
                             size="big"
+                            name={data.title}
                         />
                     </div>
                 </div>

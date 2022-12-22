@@ -45,7 +45,11 @@ function LampCard(props: TLamp & TLampAdditional): JSX.Element {
                             Обозначение: {designation?.join(', ')}
                         </span>
                     </div>
-                    <ButtonFavorite isFavorite={isFavorite} onHandleClick={favoriteCallback} />
+                    <ButtonFavorite
+                        isFavorite={isFavorite}
+                        onClick={favoriteCallback}
+                        name={title}
+                    />
                 </div>
                 <div className={css.description_block}>
                     <ul className={css.description__list}>

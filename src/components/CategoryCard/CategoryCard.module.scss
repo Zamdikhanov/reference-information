@@ -10,12 +10,17 @@
     padding: 32px 16px;
     box-shadow: 0 3px 20px $color_gray_dark;
     color: $color_title_text;
-    transition-property: color, box-shadow;
+    outline: 1px solid transparent;
+    transition-property: color, box-shadow, outline;
     transition-timing-function: ease-in-out;
     transition-duration: 0.3s;
     &:hover {
         color: $color_main_choice;
         box-shadow: 0 3px 25px $color_gray_dark;
+        outline: 1px solid $color_main_choice;
+    }
+    &:focus {
+        outline: 1px solid $color_main_choice;
     }
 }
 

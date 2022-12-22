@@ -1,18 +1,28 @@
 import React, { FC } from 'react';
+import { toast } from 'react-toastify';
 import { ReactComponent as FavoriteSVG } from '../../assets/images/heart.svg';
 import css from './ButtonFavorite.module.scss';
 
 type TButtonFavoriteProps = {
     isFavorite: boolean;
     size?: 'small' | 'big';
-    onHandleClick: () => void;
+    name?: string;
+    onClick: () => void;
 };
 
 const ButtonFavorite: FC<TButtonFavoriteProps> = ({
     isFavorite,
-    onHandleClick = () => {},
+    onClick = () => {},
+    name = '',
     size = 'small',
 }) => {
+    function onHandleClick() {
+        onClick();
+        isFavorite
+            ? toast.info(`${name ? name + ' - ' : ''}Удалён из избранного !`)
+            : toast.success(`${name ? name + ' - ' : ''}Добавлен в избранное!`);
+    }
+
     return (
         <button
             className={`${css.favorite__button} ${size === 'big' ? css.favorite__button_big : ''}`}

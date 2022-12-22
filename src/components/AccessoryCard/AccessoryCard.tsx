@@ -23,7 +23,7 @@ function AccessoryCard(props: TAccessoryAdditional & TAccessory): JSX.Element {
     return (
         <div className={css.accessory_card}>
             <div className={css.button_container}>
-                <ButtonFavorite isFavorite={isFavorite} onHandleClick={favoriteCallback} />
+                <ButtonFavorite isFavorite={isFavorite} onClick={favoriteCallback} name={title} />
             </div>
 
             <div className={css.accessory_card__image_block}>

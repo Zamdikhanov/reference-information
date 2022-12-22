@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import DetailsLayout from '../../components/DetailsLayout/DetailsLayout';
 import imgLamp from '../../assets/images/desk_lamp.png';
 import css from './FavoritesPage.module.scss';
@@ -42,6 +43,7 @@ function FavoritesPage() {
         localStorage.removeItem('favoritesAccessories');
         setLamps([]);
         setAccessories([]);
+        toast.info('Список избранного очищен');
     };
 
     const deleteLamp = (id: string) => {
@@ -50,6 +52,8 @@ function FavoritesPage() {
             'favoritesLamp',
             JSON.stringify([...lampsIdArray.filter((lampId: string) => lampId !== id)]),
         );
+        let deletedLamp = lamps.find((lamp) => lamp.id === id);
+        toast.info(`Светильник ${deletedLamp?.title} удалён`);
         setLamps((prev) => prev.filter((lamp: TLamp) => lamp.id !== id));
     };
 
@@ -61,6 +65,8 @@ function FavoritesPage() {
                 ...accessoriesIdArray.filter((accessoryId: string) => accessoryId !== id),
             ]),
         );
+        let deletedAccessory = accessories.find((accessory) => accessory.id === id);
+        toast.info(`Аксессуар ${deletedAccessory?.title} удалён`);
         setAccessories((prev) => prev.filter((accessory: TAccessory) => accessory.id !== id));
     };
 

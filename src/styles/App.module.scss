@@ -3,3 +3,10 @@
     display: flex;
     flex-direction: column;
 }
+
+[class*='Toastify__toast-container--top-right'] {
+    margin-top: 56px;
+    @media (max-width: 1024px) {
+        margin-top: 16px;
+    }
+}

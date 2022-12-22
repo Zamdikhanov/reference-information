@@ -12,8 +12,20 @@ import css from './DescriptionBlock.module.scss';
 import ButtonFavorite from '../../ButtonFavorite/ButtonFavorite';
 
 function DescriptionBlock(props: TLamp): JSX.Element {
-    const { id, imgUrl, ip, climate, type, purpose, warranty, material, color, powerRange, lens } =
-        props;
+    const {
+        id,
+        title,
+        imgUrl,
+        ip,
+        climate,
+        type,
+        purpose,
+        warranty,
+        material,
+        color,
+        powerRange,
+        lens,
+    } = props;
     // const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [hasError, setHasError] = useState(false);
     const [isFavorite, setIsFavorite] = useState(false);
@@ -135,9 +147,10 @@ function DescriptionBlock(props: TLamp): JSX.Element {
                 </li>
                 <li>
                     <ButtonFavorite
-                        onHandleClick={onFavoriteButtonClick}
+                        onClick={onFavoriteButtonClick}
                         isFavorite={isFavorite}
                         size="big"
+                        name={title}
                     />
                 </li>
             </ul>
